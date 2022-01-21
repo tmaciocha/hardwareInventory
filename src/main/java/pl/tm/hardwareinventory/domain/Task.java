@@ -22,5 +22,7 @@ public class Task {
     @NotBlank
     String title;
 
+    int priority; //1-5
+
     String description;
 }

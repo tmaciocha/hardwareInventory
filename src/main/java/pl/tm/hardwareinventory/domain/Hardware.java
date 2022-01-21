@@ -45,6 +45,8 @@ public class Hardware {
 
     String description;
 
+    Double netPrice;
+
     @OneToOne
     HardwareType hardwareType;
 

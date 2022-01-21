@@ -29,6 +29,8 @@ public class Software {
 
     String homePage;
 
+    Double netPrice;
+
     String description;
 
     @OneToMany

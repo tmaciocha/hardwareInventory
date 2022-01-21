@@ -27,10 +27,20 @@ public class Company {
     @NIP
     String nip;
 
+    @NotBlank
+    String street;
 
-    @ManyToMany
-    List<Address> addresses=new ArrayList<>();
+    @NotBlank
+    String number;
 
+    String postCode;
+
+    @NotBlank
+    String city;
+
+    String description;
+
+   
     @OneToMany
     List<User> users = new ArrayList<>();
 }
