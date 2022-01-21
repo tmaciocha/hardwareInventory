@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -42,4 +44,16 @@ public class Hardware {
     String batteryQuality;
 
     String description;
+
+    @OneToOne
+    HardwareType hardwareType;
+
+    @OneToOne
+    HardwareQuality hardwareQuality;
+
+    @OneToMany
+    List<Task> tasks = new ArrayList<>();
+
+    @ManyToMany
+    List<Software> softwareList = new ArrayList<>();
 }

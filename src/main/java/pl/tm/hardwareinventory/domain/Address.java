@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,4 +34,8 @@ public class Address {
     String city;
 
     String description;
+
+
+    @ManyToMany (mappedBy = "addresses")
+    List<Company> companies=new ArrayList<>();
 }

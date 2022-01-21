@@ -5,6 +5,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,11 +29,25 @@ public class User {
     @NotBlank
     String email;
 
+    @NotBlank
+    String password;
+
     String domainUserName;
 
     String phoneNumber;
 
+    boolean superUser;
 
 
+    @OneToMany
+    List<Hardware> hardwareList = new ArrayList<>();
 
+    @OneToMany
+    List<Software> softwareList = new ArrayList<>();
+
+    @OneToMany
+    List<Task> tasks = new ArrayList<>();
+
+    @OneToOne
+    Company company;
 }

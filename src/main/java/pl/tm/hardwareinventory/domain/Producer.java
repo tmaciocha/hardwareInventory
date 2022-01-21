@@ -22,6 +22,11 @@ public class Producer {
     @NotBlank
     String name;
 
-    //company
+    @OneToOne
+    Hardware hardware;
+
+    @OneToOne
+    Software software;
+
 
 }

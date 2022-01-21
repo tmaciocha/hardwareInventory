@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,10 +31,15 @@ public class Invoice {
 
     int vat;
 
-    //hardware
-    //software
-    //company
-    //address
+
+    @OneToMany
+    List<Hardware> hardwareList = new ArrayList<>();
+
+    @OneToMany
+    List<Software> softwareList = new ArrayList<>();
+
+    @ManyToOne
+    Company company;
 
 
 }
