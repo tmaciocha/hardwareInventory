@@ -1,10 +1,11 @@
-package pl.tm.hardwareinventory.domain;
+package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class Software {
     String homePage;
 
     Double netPrice;
+
+    LocalDate logDate;
 
     String description;
 

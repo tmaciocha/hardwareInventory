@@ -1,4 +1,4 @@
-package pl.tm.hardwareinventory.domain;
+package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,14 +12,20 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "hardwaretypes")
-public class HardwareType {
+@Table(name = "producers")
+public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
     @NotBlank
-    String type;
+    String name;
 
-    String description;
+    @OneToOne
+    Hardware hardware;
+
+    @OneToOne
+    Software software;
+
+
 }
