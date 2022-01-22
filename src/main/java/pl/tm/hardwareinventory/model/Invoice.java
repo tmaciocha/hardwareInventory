@@ -1,10 +1,11 @@
-package pl.tm.hardwareinventory.domain;
+package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,29 +15,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "users")
-public class User {
+@Table(name = "invoices")
+public class Invoice {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     long id;
 
     @NotBlank
-    String firstName;
+    String number;
 
-    @NotBlank
-    String lastName;
+    LocalDate purchaseDate;
 
-    @NotBlank
-    String email;
+    Double netValue;
 
-    @NotBlank
-    String password;
-
-    String domainUserName;
-
-    String phoneNumber;
-
-    boolean superUser;
+    int vat;
 
 
     @OneToMany
@@ -45,9 +38,8 @@ public class User {
     @OneToMany
     List<Software> softwareList = new ArrayList<>();
 
-    @OneToMany
-    List<Task> tasks = new ArrayList<>();
-
-    @OneToOne
+    @ManyToOne
     Company company;
+
+
 }

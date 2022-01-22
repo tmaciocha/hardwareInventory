@@ -1,8 +1,7 @@
-package pl.tm.hardwareinventory.domain;
+package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.pl.NIP;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,20 +12,14 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "producers")
-public class Producer {
+@Table(name = "hardwarequalities")
+public class HardwareQuality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
     @NotBlank
-    String name;
+    String qualityName;
 
-    @OneToOne
-    Hardware hardware;
-
-    @OneToOne
-    Software software;
-
-
+    String description;
 }
