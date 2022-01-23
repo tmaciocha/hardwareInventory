@@ -28,4 +28,13 @@ public class Task {
     String description;
 
     LocalDate logDate;
+
+    @OneToOne
+    Software software;
+
+    @OneToOne
+    Hardware hardware;
+
+    @OneToOne
+    User user;
 }

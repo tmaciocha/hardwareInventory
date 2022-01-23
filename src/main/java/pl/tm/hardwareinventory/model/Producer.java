@@ -21,11 +21,6 @@ public class Producer {
     @NotBlank
     String name;
 
-    @OneToOne
-    Hardware hardware;
-
-    @OneToOne
-    Software software;
 
 
 }

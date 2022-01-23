@@ -32,12 +32,6 @@ public class Invoice {
     int vat;
 
 
-    @OneToMany
-    List<Hardware> hardwareList = new ArrayList<>();
-
-    @OneToMany
-    List<Software> softwareList = new ArrayList<>();
-
     @ManyToOne
     Company company;
 

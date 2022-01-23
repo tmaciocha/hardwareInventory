@@ -39,15 +39,11 @@ public class User {
     boolean superUser;
 
 
-    @OneToMany
-    List<Hardware> hardwareList = new ArrayList<>();
 
-    @OneToMany
+    @ManyToMany
     List<Software> softwareList = new ArrayList<>();
 
-    @OneToMany
-    List<Task> tasks = new ArrayList<>();
 
-    @OneToOne
-    Company company;
+    @ManyToMany(mappedBy = "users")
+    List<Company> companies=new ArrayList<>();
 }

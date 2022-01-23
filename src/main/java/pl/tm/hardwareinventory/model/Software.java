@@ -36,18 +36,27 @@ public class Software {
 
     String description;
 
-    @OneToMany
-    List<Task> tasks = new ArrayList<>();
+
+
 
     @OneToOne
     SoftwareType softwareType;
 
-    @OneToOne
-    Producer producer;
 
     @OneToOne
     Invoice invoice;
 
     @ManyToMany(mappedBy = "softwareList")
     List<Hardware>hardwareList=new ArrayList<>();
+
+    @ManyToMany(mappedBy = "softwareList")
+    List<User> users = new ArrayList<>();
+
+    @ManyToOne
+    Company company;
+
+
+    @OneToOne
+    Producer producer;
+
 }

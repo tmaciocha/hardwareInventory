@@ -50,14 +50,25 @@ public class Hardware {
     Double netPrice;
 
     @OneToOne
+    Producer producer;
+
+    @OneToOne
     HardwareType hardwareType;
 
     @OneToOne
     HardwareQuality hardwareQuality;
 
-    @OneToMany
-    List<Task> tasks = new ArrayList<>();
+
 
     @ManyToMany
     List<Software> softwareList = new ArrayList<>();
+
+    @ManyToOne
+    Company company;
+
+    @OneToOne
+    Invoice invoice;
+
+    @OneToOne
+    User user;
 }
