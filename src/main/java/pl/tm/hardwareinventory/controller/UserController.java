@@ -23,7 +23,6 @@ import java.util.Optional;
 public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
-    private final BCryptPasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -89,26 +88,26 @@ public class UserController {
     }
 
 
-    @GetMapping("/find")
-    public String findBy(Model model){
-        model.addAttribute("users", new User());
-        model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("users", new User());
-    return ("/users/find");
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable long id, Model model){
+        Optional<User> userOptional = userRepository.findById(id);
+        if(userOptional.isPresent()){
+            logger.info(userOptional.get().getUsername() + "!!!!!!!!!!!!!!!!!!!!!!!!");
+            model.addAttribute("user", userOptional.get());
+        }else{
+            throw new RuntimeException("No such user");
+        }
+        return "users/edit";
     }
 
-    @GetMapping("/find/{username}")
-    @ResponseBody
-    public String founded(@PathVariable String username, Model model, BindingResult bindingResult){
+    @PostMapping("/edit")
+    public String update(@Valid User user, BindingResult bindingResult){
+        logger.info("entered to PostMapping/edit !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! ");
         if(bindingResult.hasErrors()){
-            logger.info("!!!!!! errors in /find/{username}");
-            return "/users/find";
+            return "users/edit";
         }
-        model.addAttribute("users", new User());
-        model.addAttribute("users", userRepository.findFirstByUsername(username));
-      //  return " "+userRepository.findByUsername(username).getLastName();
-        return "/users/find" ;
-
+        userRepository.save(user);
+        return "redirect:/user/list";
     }
 
 }
