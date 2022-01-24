@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,8 +29,13 @@ public class User {
     @NotBlank
     String lastName;
 
-    @NotBlank
-    String email;
+    @Column(nullable = false, unique = true, length = 60)
+    String username;//email
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @NotBlank
     String password;
@@ -43,7 +49,7 @@ public class User {
     boolean activeUser;
 
     @Nullable
-    @NotBlank
+    //@NotBlank
     LocalDate endOfContract;
 
 
