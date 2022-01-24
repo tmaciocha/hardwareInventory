@@ -109,7 +109,7 @@ public class UserController {
             logger.info("mamy błędy walidacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             return "users/edit";
         }
-        userRepository.save(user);
+        userService.saveUser(user);
         return "redirect:/user/list";
     }
 

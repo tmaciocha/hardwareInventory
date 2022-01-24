@@ -13,6 +13,6 @@
     <title>Security with Spring Boot</title>
 </head>
 <body>
-<h1>Dostęp zabroniony</h1>
+<h1>You don't have access to this resources.</h1>
 </body>
 </html>

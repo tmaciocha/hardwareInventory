@@ -37,21 +37,21 @@
                     <th>Type</th>
                     <th>Description</th>
                 </tr>
-                </thead>
+                </thead><%--
               <tfoot>
                 <tr>
                     <th>Id</th>
                     <th>Type</th>
                     <th>Description</th>
                 </tr>
-                </tfoot>
+                </tfoot>--%>
                 <tbody>
 
 
                 <c:forEach items="${softwareTypes}" var="type">
                     <tr>
                         <td colspan="">${type.id}</td>
-                        <td colspan="">${type.title}</td>
+                        <td colspan="">${type.type}</td>
                         <td colspan="">${type.description}</td>
                         <td><a href="edit/${type.id}">Edit</a></td>
                         <td><a href="remove/${type.id}">Remove</a></td>
