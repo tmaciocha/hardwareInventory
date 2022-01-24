@@ -50,18 +50,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new SpringDataUserDetailsService();
     }
 
-    @Bean
-    public UserService userService(){
-        return new UserService() {
-            @Override
-            public User findByUserName(String name) {
-                return userService().findByUserName(name);
-            }
-
-            @Override
-            public void saveUser(User user) {
-                userService().saveUser(user);
-            }
-        };
-    }
   }
