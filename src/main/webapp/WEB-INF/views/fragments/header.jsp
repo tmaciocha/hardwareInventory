@@ -109,7 +109,6 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="/user/list">List</a>
                             <a class="nav-link" href="/user/">Add</a>
-                            <a class="nav-link" href="/user/find">Find</a>
                            <%-- <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">--%>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">

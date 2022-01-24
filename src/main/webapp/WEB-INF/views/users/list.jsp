@@ -8,6 +8,8 @@
 <%@ include file="/WEB-INF/views/fragments/header.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 
 
 <html>
@@ -21,15 +23,13 @@
     </ol>
 
 
-    <form method="get" action="/user/find">
+    <form:form method="post" action="/user/filter" >
         <div>
             <label for="username">find user: </label>
-            <input name="username" id="username" type="text" placeholder="email address">
+            <input name="username" id="username" type="text" placeholder="DO ZROBIENIA PÓŹNIEJ - email address">
             <input type="submit" value="search">
         </div>
-    </form>
-
-
+    </form:form>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
