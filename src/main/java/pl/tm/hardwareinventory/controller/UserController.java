@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.RoleRepository;
 import pl.tm.hardwareinventory.repository.UserRepository;
-import service.UserService;
+import pl.tm.hardwareinventory.service.UserService;
 
 import javax.validation.Valid;
 import java.util.Collections;

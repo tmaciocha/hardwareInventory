@@ -9,8 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.tm.hardwareinventory.model.User;
-import service.SpringDataUserDetailsService;
-import service.UserService;
+import pl.tm.hardwareinventory.service.SpringDataUserDetailsService;
+import pl.tm.hardwareinventory.service.UserService;
 
 
 @Configuration
@@ -64,18 +64,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             }
         };
     }
-  /*@Bean
-  public UserService userService(){
-      return new UserService() {
-          @Override
-          public User findByUserName(String name) {
-              return null;
-          }
-
-          @Override
-          public void saveUser(User user) {
-
-          }
-      };  }
-*/
-}
+  }
