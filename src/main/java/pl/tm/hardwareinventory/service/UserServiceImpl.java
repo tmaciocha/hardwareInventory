@@ -1,4 +1,4 @@
-package service;
+package pl.tm.hardwareinventory.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

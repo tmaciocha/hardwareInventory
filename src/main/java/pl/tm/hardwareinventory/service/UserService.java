@@ -1,4 +1,4 @@
-package service;
+package pl.tm.hardwareinventory.service;
 
 import pl.tm.hardwareinventory.model.User;
 
