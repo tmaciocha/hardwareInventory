@@ -11,22 +11,24 @@
 
 
 <html>
-<title>Users</title>
+<title>find user</title>
 </html>
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> users list:</h1>
+    <h1 class="mt-4">find user</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
 
-    <form method="get" action="/user/find">
+    <form method="get" <%--action="/user/founded"--%>>
         <div>
             <label for="username">find user: </label>
             <input name="username" id="username" type="text" placeholder="email address">
+
             <input type="submit" value="search">
         </div>
+
     </form>
 
 
@@ -45,7 +47,7 @@
                     <th>Phone Number</th>
                 </tr>
                 </thead>
-              <tfoot>
+                <tfoot>
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -54,7 +56,7 @@
                 </tr>
                 </tfoot>
                 <tbody>
-
+                
 
                 <c:forEach items="${users}" var="user">
                     <tr>
@@ -64,6 +66,7 @@
                         <td colspan="">${user.phoneNumber}</td>
                         <td><a href="edit/${user.id}">Edit</a></td>
                         <td><a href="remove/${user.id}">Remove</a></td>
+                        <td><a href="#">Details</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

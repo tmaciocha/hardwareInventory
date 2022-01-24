@@ -24,7 +24,7 @@ public class HomeController {
     @RequestMapping("/")
     public String homePage(){
 
-        logger.info("!!!!!!wywołany homepage!!!!!!");
+        logger.info("!!!!!!Welcome in Hardware Inventory App!!!!!!");
         return"index";
     }
 }
