@@ -14,6 +14,7 @@ import pl.tm.hardwareinventory.repository.UserRepository;
 import pl.tm.hardwareinventory.service.UserService;
 
 import javax.validation.Valid;
+import javax.validation.Validator;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -24,12 +25,13 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
     private final RoleRepository roleRepository;
+    private final Validator validator;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
     @GetMapping("/list")
-    public String usersList(Model model){
+    public String usersList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "users/list";
     }
@@ -41,17 +43,16 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id, Model model, @RequestParam String confirm){
-        if(confirm.equals("Yes")) {
+    public String delete(@PathVariable long id, Model model, @RequestParam String confirm) {
+        if (confirm.equals("Yes")) {
             Optional<User> user = userRepository.findById(id);
-            if(user.isPresent() && !user.get().isSuperUser()) {
+            if (user.isPresent() && !user.get().isSuperUser()) {
                 userRepository.deleteById(id);
                 model.addAttribute("userId", null);
             }
         }
         return "redirect:/user/list";
     }
-
 
 
     @GetMapping("/createAdmin")
@@ -73,14 +74,14 @@ public class UserController {
 
 
     @GetMapping("/")
-    public String add(Model model){
+    public String add(Model model) {
         model.addAttribute("user", new User());
         return "/users/add";
     }
 
     @PostMapping("/")
-    public String save(@Valid User user, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String save(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/users/add";
         }
         userService.saveUser(user);
@@ -89,21 +90,23 @@ public class UserController {
 
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable long id, Model model){
+    public String editForm(@PathVariable long id, Model model) {
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             logger.info(userOptional.get().getUsername() + "!!!!!!!!!!!!!!!!!!!!!!!!");
             model.addAttribute("user", userOptional.get());
-        }else{
+        } else {
             throw new RuntimeException("No such user");
         }
         return "users/edit";
     }
 
     @PostMapping("/edit")
-    public String update(@Valid User user, BindingResult bindingResult){
+    public String updateUser(@Valid User user, BindingResult bindingResult) {
         logger.info("entered to PostMapping/edit !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! ");
-        if(bindingResult.hasErrors()){
+        logger.info(user.getUsername() + " USERNAME!!!!!!!!!!!!!!!!!!!!!!!");
+        if (bindingResult.hasErrors()) {
+            logger.info("mamy błędy walidacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             return "users/edit";
         }
         userRepository.save(user);

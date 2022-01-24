@@ -6,9 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import pl.tm.hardwareinventory.converter.UserConverter;
+
+import javax.validation.Validator;
 
 @Configuration
 @ComponentScan("pl.tm")
@@ -31,6 +34,9 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(userConverter());
     }
 
-
+    @Bean
+    public Validator validator() {
+        return new LocalValidatorFactoryBean();
+    }
 
 }

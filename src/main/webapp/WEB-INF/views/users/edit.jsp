@@ -30,12 +30,12 @@
     <form:form action="/user/edit" method="post" modelAttribute="user">
         <form:hidden path="id"/>
 
-    <%--<div>
+    <div>
         <label>Email</label>
-        <form:input path="username" type="text" disabled="true" />
+        <form:input path="username" type="text" readonly="true"/>
         <form:errors path="username" cssClass="errorForm" element="div"/>
     </div>
---%>
+
     <div>
         <label>First Name</label>
         <form:input path="firstName" type="text"/>

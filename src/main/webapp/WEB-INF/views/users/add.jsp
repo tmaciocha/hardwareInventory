@@ -66,6 +66,14 @@
         <form:input path="phoneNumber" type="text" />
         <form:errors path="phoneNumber" cssClass="errorForm" element="div"/>
     </div>
+    <div>
+        <label>active:</label>
+        <form:checkbox path="activeUser" />
+    </div>
+    <div>
+        <label>admin:</label>
+        <form:checkbox path="superUser"/>
+    </div>
 
     <div><input value="save" type="submit"></div>
 
