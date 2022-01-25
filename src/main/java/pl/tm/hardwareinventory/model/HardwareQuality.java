@@ -19,6 +19,7 @@ public class HardwareQuality {
     long id;
 
     @NotBlank
+    @Column(unique = true)
     String qualityName;
 
     String description;

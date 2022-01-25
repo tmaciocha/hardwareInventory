@@ -30,7 +30,7 @@
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <form action="/find/all" name="search" method="get">
-            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" id="search" name="search"/>
+            <input class="form-control" type="text" placeholder="Search for...TODO" aria-label="Search for..." aria-describedby="btnNavbarSearch" id="search" name="search"/>
             <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
             </form>
         </div>
@@ -70,7 +70,6 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="layout-static.html">List</a>
                             <a class="nav-link" href="layout-sidenav-light.html">Add</a>
-                            <a class="nav-link" href="">Find</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
@@ -82,7 +81,6 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="layout-static.html">List</a>
                             <a class="nav-link" href="layout-sidenav-light.html">Add</a>
-                            <a class="nav-link" href="">Find</a>
                         </nav>
                     </div>
 
@@ -95,7 +93,6 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="layout-static.html">List</a>
                             <a class="nav-link" href="layout-sidenav-light.html">Add</a>
-                            <a class="nav-link" href="">Find</a>
                         </nav>
                     </div>
 
@@ -109,9 +106,9 @@
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="/user/list">List</a>
                             <a class="nav-link" href="/user/">Add</a>
-                           <%-- <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">--%>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                   <%-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                         Authentication
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -120,7 +117,7 @@
                                             <a class="nav-link" href="login.html">Login</a>
                                             <a class="nav-link" href="register.html">Register</a>
                                             <a class="nav-link" href="password.html">Forgot Password</a>
-                                      <%--  </nav>
+                                        </nav>
                                     </div>--%>
                         </nav>
                     </div>

@@ -93,7 +93,6 @@ public class UserController {
     public String editForm(@PathVariable long id, Model model) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
-            logger.info(userOptional.get().getUsername() + "!!!!!!!!!!!!!!!!!!!!!!!!");
             model.addAttribute("user", userOptional.get());
         } else {
             throw new RuntimeException("No such user");
@@ -103,10 +102,7 @@ public class UserController {
 
     @PostMapping("/edit")
     public String updateUser(@Valid User user, BindingResult bindingResult) {
-        logger.info("entered to PostMapping/edit !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! !!!!! ");
-        logger.info(user.getUsername() + " USERNAME!!!!!!!!!!!!!!!!!!!!!!!");
         if (bindingResult.hasErrors()) {
-            logger.info("mamy błędy walidacji !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             return "users/edit";
         }
         userService.saveUser(user);

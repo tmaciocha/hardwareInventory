@@ -15,8 +15,8 @@ public class SoftwareTypeController {
 
         @GetMapping("/")
         private String list(Model model){
-            model.addAttribute("softwareTypes", softwareTypeRepository.findAll());
-            return "/settings/softwareType/list";
+            model.addAttribute("softwareTypes", softwareTypeRepository.findAllByOrderByTypeAsc());
+            return "/admin/settings/softwareType/list";
         }
 
 

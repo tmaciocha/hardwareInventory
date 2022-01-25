@@ -23,6 +23,7 @@ public class Invoice {
     long id;
 
     @NotBlank
+    @Column(unique = true)
     String number;
 
     LocalDate purchaseDate;

@@ -52,11 +52,11 @@
         <form:input path="password" type="password"/>
         <form:errors path="password" cssClass="errorForm" element="div"/>
     </div>
-     <%--<div>
+     <div>
                 <label>End of the contract</label>
                 <form:input path="endOfContract" type="date" />
                 <form:errors path="endOfContract" cssClass="errorForm" element="div"/>
-            </div>--%>
+            </div>
     <div>
         <label>Domain username:</label>
         <form:input path="domainUserName" type="text" />

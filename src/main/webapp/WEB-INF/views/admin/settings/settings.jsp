@@ -15,10 +15,24 @@
 </head>
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> software types list:</h1>
+    <h1 class="mt-4"> Settings list:</h1>
     <ol class="breadcrumb mb-4">
     </ol>
+<div>
+<a href="/softwaretype/">Software type list</a>
+</div>
 
-<a href="/softwaretype/">software type list</a>
+    <div>
+        <a href="/producer/">Producers list</a>
+    </div>
+
+    <div>
+        <a href="/hardwarequality/">Hardware quality list - TODO</a>
+    </div>
+
+    <div>
+        <a href="/hardwaretype/">Hardware type list - TODO</a>
+    </div>
+
 
 <%@ include file="/WEB-INF/views/fragments/footer.jsp" %>

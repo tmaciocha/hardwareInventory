@@ -19,6 +19,7 @@ public class HardwareType {
     long id;
 
     @NotBlank
+    @Column(unique = true)
     String type;
 
     String description;
