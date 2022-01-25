@@ -95,7 +95,7 @@ public class UserController {
         if (userOptional.isPresent()) {
             model.addAttribute("user", userOptional.get());
         } else {
-            throw new RuntimeException("No such user");
+            throw new RuntimeException();
         }
         return "users/edit";
     }
