@@ -10,6 +10,6 @@ public class SettingsController {
 
     @GetMapping("/settings")
     public String settings(){
-        return"/settings/settings";
+        return"/admin/settings/settings";
     }
 }

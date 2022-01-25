@@ -18,10 +18,12 @@
                 </ol>
             </div>
 
-    <div>tasks : xx</div>
-    <div>licence problems: xx</div>
-    <div>users : xx</div>
-    <div>hardware: xx</div>
-    <div>software: xx</div>
-
+<div>
+    <div>tasks : TODO</div>
+    <div>number users whose contract will end in the next 3 months: TODO</div>
+    <div>licence problems: MAYBE</div>
+    <div>users number: TODO</div>
+    <div>hardware number: TODO</div>
+    <div>software number: TODO</div>
+</div>
 <%@ include file="/WEB-INF/views/fragments/footer.jsp" %>

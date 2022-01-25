@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: themos
   Date: 23/01/2022
-  Time: 15:54
+  Time: 16:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/WEB-INF/views/fragments/header.jsp" %>
@@ -11,26 +11,33 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<head>
-    <title>Delete user</title>
-</head>
+<html>
+<title>Edit Producer</title>
+</html>
+
+
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> confirm deleting user with id ${userId}:</h1>
+    <h1 class="mt-4"> Edit producer ${producer.name}:</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active"></li>
     </ol>
 
-<form:form method="get" modelAttribute="userId" action="/user/delete/${userId}" >
-   <div><h4> Are you sure ? </h4></div>
+
+
+
+
+<%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Producer"--%>
+<form:form action="/producer/edit" method="post" modelAttribute="producer">
+    <form:hidden path="id"/>
     <div>
-        <a href="/user/delete/${userId}"><button type="submit" value="Yes" name="confirm">Yes</button></a>
-        <a href="/user/list"><button type="submit" value="No" name="confirm">No</button></a>
+        <label>Manufacturer's Name</label>
+        <form:input path="name" type="text"/>
+        <form:errors path="name" cssClass="errorForm" element="div"/>
     </div>
 
+    <div><input value="save" type="submit"></div>
 
 
 </form:form>
-
 
 <%@ include file="/WEB-INF/views/fragments/footer.jsp" %>

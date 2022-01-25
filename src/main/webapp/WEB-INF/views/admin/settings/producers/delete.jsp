@@ -12,20 +12,21 @@
 
 
 <head>
-    <title>Delete user</title>
+    <title>Remove Producer</title>
 </head>
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> confirm deleting user with id ${userId}:</h1>
+    <h1 class="mt-4"> confirm deleting producer ${producerId}:</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active"></li>
     </ol>
 
-<form:form method="get" modelAttribute="userId" action="/user/delete/${userId}" >
+<form:form method="get" modelAttribute="producerId" action="/producer/delete/${producerId}" >
    <div><h4> Are you sure ? </h4></div>
     <div>
-        <a href="/user/delete/${userId}"><button type="submit" value="Yes" name="confirm">Yes</button></a>
-        <a href="/user/list"><button type="submit" value="No" name="confirm">No</button></a>
+        <a href="/producer/delete/${producerId}"><button type="submit" value="Yes" name="confirm">Yes</button></a>
+
+        <a href="/producer/"><button type="submit" value="No" name="confirm">No</button></a>
     </div>
 
 

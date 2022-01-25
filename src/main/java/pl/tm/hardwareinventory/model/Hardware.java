@@ -25,6 +25,7 @@ public class Hardware {
     String name;
 
     @NotBlank
+    @Column(unique = true)
     String serialNumber;
 
     String inventoryNumber;

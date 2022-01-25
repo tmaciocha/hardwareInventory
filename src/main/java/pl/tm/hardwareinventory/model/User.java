@@ -2,6 +2,7 @@ package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -49,7 +50,8 @@ public class User {
     boolean activeUser;
 
     @Nullable
-    //@NotBlank
+    //@NotBlank - wyrzuca validatorem
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate endOfContract;
 
 

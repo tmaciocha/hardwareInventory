@@ -19,6 +19,7 @@ public class Producer {
     long id;
 
     @NotBlank
+    @Column(unique = true)
     String name;
 
 

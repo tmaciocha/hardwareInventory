@@ -25,6 +25,7 @@ public class Company {
     String name;
 
     @NIP
+    @Column(unique = true)
     String nip;
 
     @NotBlank

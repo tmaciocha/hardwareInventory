@@ -19,6 +19,7 @@ public class SoftwareType {
     long id;
 
     @NotBlank
+    @Column(unique = true)
     String type;
 
     String description;
