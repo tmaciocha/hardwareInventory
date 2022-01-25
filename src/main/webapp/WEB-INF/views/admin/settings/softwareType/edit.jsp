@@ -12,13 +12,13 @@
 
 <html>
 <head>
-    <title>New Software Type</title>
+    <title>Edit Software Type </title>
 </head>
 
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Add new software type:</h1>
+    <h1 class="mt-4"> Edit software type:${softwaretype.type}</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
@@ -27,7 +27,7 @@
 
 
     <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Producer"--%>
-    <form:form method="post" modelAttribute="softwaretype">
+    <form:form action="/softwaretype/edit" method="post" modelAttribute="softwaretype">
         <form:hidden path="id"/>
     <div>
         <label>Type</label>
