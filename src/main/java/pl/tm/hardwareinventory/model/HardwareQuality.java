@@ -20,7 +20,7 @@ public class HardwareQuality {
 
     @NotBlank
     @Column(unique = true)
-    String qualityName;
+    String name;
 
     String description;
 }

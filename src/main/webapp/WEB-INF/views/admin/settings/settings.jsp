@@ -19,19 +19,19 @@
     <ol class="breadcrumb mb-4">
     </ol>
 <div>
-<a href="/softwaretype/">Software type list</a>
+<a href="/softwaretype/">Software type</a>
 </div>
 
     <div>
-        <a href="/producer/">Producers list</a>
+        <a href="/producer/">Producers</a>
     </div>
 
     <div>
-        <a href="/hardwarequality/">Hardware quality list - TODO</a>
+        <a href="/hardwareQuality/">Hardware quality</a>
     </div>
 
     <div>
-        <a href="/hardwaretype/">Hardware type list - TODO</a>
+        <a href="/hardwareType/">Hardware type</a>
     </div>
 
 

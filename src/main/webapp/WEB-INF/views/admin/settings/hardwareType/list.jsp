@@ -11,12 +11,12 @@
 
 
 <html>
-<title>Software Types</title>
+<title>Hardware Types</title>
 </html>
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> software types list:</h1>
+    <h1 class="mt-4"> Hardware types list:</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
@@ -27,7 +27,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Software type    <a href="add/">Add new</a>
+            Hardware type    <a href="add/">Add new</a>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
@@ -47,7 +47,7 @@
                 <tbody>
 
 
-                <c:forEach items="${softwareTypes}" var="type">
+                <c:forEach items="${hardwareTypes}" var="type">
                     <tr>
                         <td colspan="">${type.type}</td>
                         <td colspan="">${type.description}</td>
