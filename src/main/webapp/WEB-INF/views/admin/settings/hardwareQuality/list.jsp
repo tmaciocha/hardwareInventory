@@ -28,9 +28,10 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-             <a href="add/">Add new quality</a>
+            <a href="/settings">Settings</a>
         </div>
         <div class="card-body">
+            <a href="add/">Add new</a>
             <table id="datatablesSimple">
                 <thead>
                 <tr>

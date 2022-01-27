@@ -27,11 +27,15 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Software type    <a href="add/">Add new</a>
+            <a href="/settings">Settings</a>
+
         </div>
         <div class="card-body">
+            <a href="add/">Add new</a>
             <table id="datatablesSimple">
+
                 <thead>
+
                 <tr>
                     <th>Type</th>
                     <th>Description</th>
