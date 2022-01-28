@@ -59,7 +59,4 @@ public class User {
     @ManyToMany
     List<Software> softwareList = new ArrayList<>();
 
-
-    @ManyToMany(mappedBy = "users")
-    List<Company> companies=new ArrayList<>();
 }

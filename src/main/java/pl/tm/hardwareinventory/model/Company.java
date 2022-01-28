@@ -41,9 +41,4 @@ public class Company {
 
     String description;
 
-   
-    @ManyToMany
-    List<User> users = new ArrayList<>();
-
-
 }

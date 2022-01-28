@@ -25,7 +25,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
     private final RoleRepository roleRepository;
-    private final Validator validator;
+
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
