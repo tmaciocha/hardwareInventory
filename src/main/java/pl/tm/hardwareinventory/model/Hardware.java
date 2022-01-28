@@ -28,7 +28,7 @@ public class Hardware {
     @Column(unique = true)
     String serialNumber;
 
-    String inventoryNumber;
+    String macNumber;
 
     String screenSize;
 

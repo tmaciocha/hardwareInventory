@@ -3,11 +3,11 @@ INSERT INTO `role` (`id`, `name`) VALUES (NULL, 'ROLE_USER');
 INSERT INTO `role` (`id`, `name`) VALUES (NULL, 'ROLE_ADMIN');
 
 /*ADMIN*/
-INSERT INTO users (username,domain_user_name,first_name,last_name,password,phone_number,super_user,active_user, end_of_contract)
-values ('admin@gmail.com','adminAD@domain.com','admin','admin','admin','012 638-48-12', 1, 1, null) ;
+/*INSERT INTO users (username,domain_user_name,first_name,last_name,password,phone_number,super_user,active_user, end_of_contract)
+values ('admin@gmail.com','adminAD@domain.com','admin','admin','admin','012 638-48-12', 1, 1, null) ;*/
 
 /*ADMIN ROLE*/
-INSERT INTO user_role (user_id, role_id) VALUES (1,2);
+/*INSERT INTO user_role (user_id, role_id) VALUES (1,2);*/
 
 /*hardware type*/
 INSERT INTO hardwaretypes (type) VALUES ('Notebook');

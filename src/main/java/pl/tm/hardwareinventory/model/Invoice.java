@@ -23,15 +23,12 @@ public class Invoice {
     long id;
 
     @NotBlank
-    @Column(unique = true)
     String number;
 
+    @NotBlank
     LocalDate purchaseDate;
 
-    Double netValue;
-
-    int vat;
-
+    String filename;
 
     @ManyToOne
     Company company;
