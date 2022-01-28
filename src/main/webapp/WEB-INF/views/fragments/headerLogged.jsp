@@ -105,8 +105,8 @@
                     <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="/invoice/">List</a>
-                            <a class="nav-link" href="/invoice/add">Add</a>
+                            <a class="nav-link" href="layout-static.html">List</a>
+                            <a class="nav-link" href="layout-sidenav-light.html">Add</a>
                         </nav>
                     </div>
 
@@ -154,7 +154,7 @@
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
-                Guest
+                <sec:authentication  property="principal.username"/>
             </div>
         </nav>
     </div>

@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.RoleRepository;
@@ -34,8 +36,8 @@ public class HomeController {
 
 
 
-    @RequestMapping("/")
-    public String homePage(){
+    @GetMapping("/")
+    public String homePage(Model model){
         logger.info("!!!!!!Welcome in Hardware Inventory App!!!!!!");
         if(userRepository.findByUsername("admin@gmail.com") == null){
             User user = new User();
@@ -51,7 +53,6 @@ public class HomeController {
             logger.info("!!!!!!Admin created!!!!!!");
             return "index";
         }
-
-        return"index";
+        return "index";
     }
 }
