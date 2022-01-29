@@ -73,7 +73,6 @@
                         <td colspan="">${company.postCode}</td>
                         <td colspan="">${company.description}</td>
                         <td><a href="edit/${company.id}">Edit</a></td>
-                        <td><a href="remove/${company.id}">Remove</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

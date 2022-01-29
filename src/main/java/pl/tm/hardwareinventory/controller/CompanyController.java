@@ -62,18 +62,5 @@ public class CompanyController {
         return "redirect:/company/";
     }
 
-    @GetMapping("/remove/{id}")
-    public String remove(@PathVariable long id, Model model){
-        model.addAttribute("companyId", id);
-        return "/companies/delete";
-    }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id, @RequestParam String confirm, Model model){
-        if(confirm.equals("Yes")){
-            companyRepository.deleteById(id);
-        }
-        model.addAttribute("companyId", null);
-        return "redirect:/company/";
-    }
 }

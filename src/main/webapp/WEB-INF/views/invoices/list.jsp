@@ -62,9 +62,9 @@
                         <td colspan="">${invoice.number}</td>
                         <td colspan="">${invoice.purchaseDate}</td>
                         <td colspan="">${invoice.filename}</td>
-                        <td colspan="">${invoice.company.nip}</td>
+                        <td colspan="">${invoice.company.nipName}</td>
                         <td><a href="edit/${invoice.id}">Edit</a></td>
-                        <td><a href="remove/${invoice.id}">Remove</a></td>
+                        <td><a href="file/">Add file</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

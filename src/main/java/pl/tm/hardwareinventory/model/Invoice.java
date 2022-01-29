@@ -34,7 +34,7 @@ public class Invoice {
     String filename;
 
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne//(cascade = {CascadeType.ALL})
     Company company;
 
 

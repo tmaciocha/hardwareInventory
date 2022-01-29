@@ -32,7 +32,7 @@
 
     <div>
         <label>seller</label>
-        <form:select path="company.nip" items="${companies}"  itemLabel="nipName" itemValue="nipName" />
+        <form:select path="company.id" items="${companies}"  itemLabel="nipName" itemValue="id" />
         <div><a href="/company/add">If doesn't exist add new</a></div>
         <form:errors path="company" cssClass="errorForm" element="div"/>
     </div>

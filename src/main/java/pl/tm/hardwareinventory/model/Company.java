@@ -26,7 +26,7 @@ public class Company {
    // @NotBlank
     String name;
 
-   // @NIP
+   @NIP
     @Column(unique = true)
     String nip;
 
@@ -48,7 +48,7 @@ public class Company {
         return nip + ", " + name;
     }
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company")//, cascade = CascadeType.ALL)
     private Collection<Invoice> invoice;
 
 

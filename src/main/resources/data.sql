@@ -63,3 +63,5 @@ INSERT INTO hardwarequalities (description, name) VALUES ('','repaired');
 
 INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Warszawa', 'adupczyk@praxis.pl', 'Praxis S.A.', '5271004248','02-235','Równoległa','9A');
 INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Ożarów Mazowiecki', '', 'P.H.U. Polcan Roman Kwiatkowski', '5340016706','05-850','Poznańska','218');
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'KSERKOP SP.Z O.O.', '6770024123','30-019','Mazowiecka','21');
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'MULTIOFFICE  SP.Z O.O.', '6751063381','30-390','Zawiła','65d');
