@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.pl.NIP;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -21,24 +23,40 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @NotBlank
+   // @NotBlank
     String name;
 
-    @NIP
+   // @NIP
     @Column(unique = true)
     String nip;
 
-    @NotBlank
+   // @NotBlank
     String street;
 
-    @NotBlank
-    String number;
+    //@NotBlank
+    @Column(name = "streetnumber")
+    String streetNumber;
 
     String postCode;
 
-    @NotBlank
+  // @NotNull
     String city;
 
     String description;
 
+    public String getNipName() {
+        return nip + ", " + name;
+    }
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private Collection<Invoice> invoice;
+
+
+    public Collection<Invoice> getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Collection<Invoice> invoice) {
+        this.invoice = invoice;
+    }
 }

@@ -61,3 +61,5 @@ INSERT INTO hardwarequalities (description, name) VALUES ('','used more than 3 y
 INSERT INTO hardwarequalities (description, name) VALUES ('not know for how long','used' );
 INSERT INTO hardwarequalities (description, name) VALUES ('','repaired');
 
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Warszawa', 'adupczyk@praxis.pl', 'Praxis S.A.', '5271004248','02-235','Równoległa','9A');
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Ożarów Mazowiecki', '', 'P.H.U. Polcan Roman Kwiatkowski', '5340016706','05-850','Poznańska','218');

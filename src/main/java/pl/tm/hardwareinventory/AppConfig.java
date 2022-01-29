@@ -1,5 +1,7 @@
 package pl.tm.hardwareinventory;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.tm.hardwareinventory.converter.CompanyConverter;
 import pl.tm.hardwareinventory.converter.UserConverter;
 
 import javax.validation.Validator;
@@ -29,9 +32,13 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public UserConverter userConverter(){return new UserConverter();}
 
+    @Bean
+    public CompanyConverter companyConverter(){return new CompanyConverter();}
+
     @Override
     public void addFormatters(FormatterRegistry registry){
         registry.addConverter(userConverter());
+        registry.addConverter(companyConverter());
     }
 
     @Bean
