@@ -2,6 +2,7 @@ package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -30,7 +31,7 @@ public class Hardware {
 
     String macNumber;
 
-    String screenSize;
+    int screenSize;
 
     int ramAmount;
 
@@ -38,11 +39,11 @@ public class Hardware {
 
     String discType;
 
-    LocalDate purchaseDate;
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate productionDate;
 
-    LocalDate logDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate LastChangeDate;
 
     String batteryQuality;
 
@@ -58,7 +59,6 @@ public class Hardware {
 
     @OneToOne
     HardwareQuality hardwareQuality;
-
 
 
     @ManyToMany

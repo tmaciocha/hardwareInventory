@@ -78,8 +78,8 @@
                     <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">List</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Add</a>
+                            <a class="nav-link" href="/hardware/">List</a>
+                            <a class="nav-link" href="/hardware/add">Add</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2"
@@ -91,8 +91,8 @@
                     <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">List</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Add</a>
+                            <a class="nav-link" href="/software/">List</a>
+                            <a class="nav-link" href="/software/add">Add</a>
                         </nav>
                     </div>
 
@@ -111,7 +111,7 @@
                     </div>
 
 
-                    <a class="nav-link collapsed" href="/user/list" data-bs-toggle="collapse"
+                    <a class="nav-link collapsed" href="" data-bs-toggle="collapse"
                        data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts4">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Users
@@ -120,8 +120,8 @@
                     <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
                          data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="/user/list">List</a>
-                            <a class="nav-link" href="/user/">Add</a>
+                            <a class="nav-link" href="/user/">List</a>
+                            <a class="nav-link" href="/user/add">Add</a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                                  data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
@@ -131,7 +131,7 @@
                     </div>
 
 
-                    <a class="nav-link collapsed" href="/user/list" data-bs-toggle="collapse"
+                    <a class="nav-link collapsed" href="/company/" data-bs-toggle="collapse"
                        data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts5">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Companies

@@ -2,9 +2,9 @@
 INSERT INTO `role` (`id`, `name`) VALUES (NULL, 'ROLE_USER');
 INSERT INTO `role` (`id`, `name`) VALUES (NULL, 'ROLE_ADMIN');
 
-/*ADMIN*/
-/*INSERT INTO users (username,domain_user_name,first_name,last_name,password,phone_number,super_user,active_user, end_of_contract)
-values ('admin@gmail.com','adminAD@domain.com','admin','admin','admin','012 638-48-12', 1, 1, null) ;*/
+/*User*/
+INSERT INTO users (username,domain_user_name,first_name,last_name,password,phone_number,super_user,active_user, end_of_contract)
+values ('user@gmail.com','userAD@domain.com','user1','userLastName1','user1','012 532-41-52', 0, 1, null) ;
 
 /*ADMIN ROLE*/
 /*INSERT INTO user_role (user_id, role_id) VALUES (1,2);*/
@@ -63,5 +63,6 @@ INSERT INTO hardwarequalities (description, name) VALUES ('','repaired');
 
 INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Warszawa', 'adupczyk@praxis.pl', 'Praxis S.A.', '5271004248','02-235','Równoległa','9A');
 INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Ożarów Mazowiecki', '', 'P.H.U. Polcan Roman Kwiatkowski', '5340016706','05-850','Poznańska','218');
-INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'KSERKOP SP.Z O.O.', '6770024123','30-019','Mazowiecka','21');
-INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'MULTIOFFICE  SP.Z O.O.', '6751063381','30-390','Zawiła','65d');
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'Kserkop Sp. z o.o.', '6770024123','30-019','Mazowiecka','21');
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'Multioffice Sp. z o.o.', '6751063381','30-390','Zawiła','65d');
+INSERT INTO companies (city, description, name, nip, post_code, street, streetnumber) VALUES ('Kraków', '', 'DTS Sp. z o.o. Sp.k.', '9452166838','31-331','Północna','3');

@@ -30,7 +30,7 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String usersList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "users/list";
@@ -73,19 +73,19 @@ public class UserController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("user", new User());
         return "/users/add";
     }
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public String save(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/users/add";
         }
         userService.saveUser(user);
-        return ("redirect:/user/list");
+        return ("redirect:/user/");
     }
 
 

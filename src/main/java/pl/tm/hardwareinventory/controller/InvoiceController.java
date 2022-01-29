@@ -35,6 +35,7 @@ public class InvoiceController {
     @GetMapping("/add")
     public String add(Model model){
         model.addAttribute("invoice",new Invoice());
+        model.addAttribute("companies",companyRepository.findAll());
         return ("/invoices/add");
     }
     //SAVE
@@ -47,9 +48,6 @@ public class InvoiceController {
         return "redirect:/invoice/";
     }
 
-    @ModelAttribute("companies")
-    public Collection<Company> companies(){
-        return companyRepository.findAll();
-    }
+
 
 }
