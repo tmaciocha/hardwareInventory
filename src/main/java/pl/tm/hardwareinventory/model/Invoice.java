@@ -34,8 +34,12 @@ public class Invoice {
     String filename;
 
 
-    @ManyToOne//(cascade = {CascadeType.ALL})
+    @ManyToOne
     Company company;
+
+    public String getNumberCompany(){
+        return "Nr " + number + ", FROM:  " + company.getName();
+    }
 
 
 

@@ -23,23 +23,23 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-   // @NotBlank
+    @NotBlank
     String name;
 
-   @NIP
+    @NIP
     @Column(unique = true)
     String nip;
 
-   // @NotBlank
+    @NotBlank
     String street;
 
-    //@NotBlank
+    @NotBlank
     @Column(name = "streetnumber")
     String streetNumber;
 
     String postCode;
 
-  // @NotNull
+    @NotNull
     String city;
 
     String description;

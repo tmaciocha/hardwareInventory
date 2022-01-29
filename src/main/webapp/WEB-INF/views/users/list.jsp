@@ -36,6 +36,7 @@
             All users
         </div>
         <div class="card-body">
+            <a href="add/">Add new</a>
             <table id="datatablesSimple">
                 <thead>
                 <tr>

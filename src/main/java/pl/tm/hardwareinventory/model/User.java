@@ -50,7 +50,6 @@ public class User {
     boolean activeUser;
 
     @Nullable
-    //@NotBlank - wyrzuca validatorem
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate endOfContract;
 
