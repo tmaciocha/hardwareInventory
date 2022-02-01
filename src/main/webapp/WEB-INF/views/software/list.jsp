@@ -77,12 +77,12 @@
                         <td>${software.serialKey}</td>
                         <td>
                             <c:forEach items="${software.hardwareList}" var="hardware">
-                                ${hardware.producer.name} ${hardware.name};;<br/>
+                                ${hardware.producer.name} ${hardware.name}<br/>
                             </c:forEach>
                         </td>
                         <td>
                             <c:forEach items="${software.users}" var="user">
-                                ${user.username};+;<br/>
+                                ${user.username}<br/>
                             </c:forEach>
                         </td>
                         <td>${software.description}</td>
