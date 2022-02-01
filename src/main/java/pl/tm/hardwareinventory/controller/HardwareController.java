@@ -24,6 +24,7 @@ public class HardwareController {
     private final UserRepository userRepository;
     private final InvoiceRepository invoiceRepository;
     private final HardwareQualityRepository hardwareQualityRepository;
+    private final SoftwareRepository softwareRepository;
 
     @GetMapping("/")
     private String list(Model model){
@@ -40,6 +41,7 @@ public class HardwareController {
         model.addAttribute("users", userRepository.findAll());
         model.addAttribute("invoices", invoiceRepository.findAll());
         model.addAttribute("qualities", hardwareQualityRepository.findAll());
+        model.addAttribute("softwareList", softwareRepository.findAll());
         //model.addAttribute("softwareList", );
         return "/hardware/add";
     }

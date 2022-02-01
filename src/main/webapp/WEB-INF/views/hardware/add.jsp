@@ -65,19 +65,20 @@
         <label>User</label>
         <form:select path="user.id" items="${users}" itemValue="id" itemLabel="username"/>
         <a href="/user/add" target="_blank">... or add new</a>
-        <form:errors path="company" cssClass="errorForm" element="div"/>
+        <form:errors path="user" cssClass="errorForm" element="div"/>
     </div>
 
     <div>
         <label>Invoice</label>
-        <form:select path="invoice.id" items="${invoices}" itemValue="id" itemLabel="numberCompany"/>
+        <form:select path="invoice.id" items="${invoices}" itemValue="id" itemLabel="NumberCompanyDateDescription"/>
         <a href="/invoice/add" target="_blank">... or add new</a>
         <form:errors path="invoice" cssClass="errorForm" element="div"/>
     </div>
 
+
     <div>
         <label>Description</label>
-        <form:input path="description" type="text"/>
+        <form:textarea path="description" type="text"/>
         <form:errors path="description" cssClass="errorForm" element="div"/>
     </div>
 

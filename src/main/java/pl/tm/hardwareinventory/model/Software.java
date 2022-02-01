@@ -2,12 +2,18 @@ package pl.tm.hardwareinventory.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.data.repository.cdi.Eager;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -32,11 +38,17 @@ public class Software {
 
     Double netPrice;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate logDate;
 
     String description;
 
+    String serialKey;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate activeUpTo;
+
+    boolean active;
 
 
     @OneToOne
@@ -49,8 +61,9 @@ public class Software {
     @ManyToMany(mappedBy = "softwareList")
     List<Hardware>hardwareList=new ArrayList<>();
 
+
     @ManyToMany(mappedBy = "softwareList")
-    List<User> users = new ArrayList<>();
+    List<User> users=new ArrayList<>();
 
     @ManyToOne
     Company company;

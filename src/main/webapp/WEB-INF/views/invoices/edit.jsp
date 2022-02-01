@@ -12,13 +12,13 @@
 
 
 <html>
-<title>Edit company</title>
+<title>Edit invoice</title>
 </html>
 
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Edit company:</h1>
+    <h1 class="mt-4"> Edit invoice:</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
@@ -26,44 +26,29 @@
 
 
 
-<%--@elvariable id="user" type="pl.tm.hardwareinventory.model.User"--%>
-<form:form action="/company/edit" method="post" modelAttribute="company">
+<%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Invoice"--%>
+<form:form action="/invoice/edit" method="post" modelAttribute="invoice">
     <form:hidden path="id"/>
     <div>
-        <label>NIP</label>
-        <form:input path="nip" type="text"/>
-        <form:errors path="nip" cssClass="errorForm" element="div"/>
+        <label>Number</label>
+        <form:input path="number" type="text"/>
+        <form:errors path="number" cssClass="errorForm" element="div"/>
     </div>
 
     <div>
-        <label>Name</label>
-        <form:input path="name" type="text"/>
-        <form:errors path="name" cssClass="errorForm" element="div"/>
+        <label>Purchase date</label>
+        <form:input path="purchaseDate" type="date"/>
+        <form:errors path="purchaseDate" cssClass="errorForm" element="div"/>
     </div>
     <div>
-        <label>Street</label>
-        <form:input path="street" type="text"/>
-        <form:errors path="street" cssClass="errorForm" element="div"/>
-    </div>
-    <div>
-        <label>Street number</label>
-        <form:input path="streetNumber" type="text"/>
-        <form:errors path="streetNumber" cssClass="errorForm" element="div"/>
-    </div>
-    <div>
-        <label>City</label>
-        <form:input path="city" type="text"/>
-        <form:errors path="city" cssClass="errorForm" element="div"/>
-    </div>
-    <div>
-        <label>Post code</label>
-        <form:input path="postCode" type="text"/>
-        <form:errors path="postCode" cssClass="errorForm" element="div"/>
+        <label>Seller</label>
+        <form:select path="company.id" items="${sellers}" itemLabel="nipName" itemValue="id"/>
+        <form:errors path="company" cssClass="errorForm" element="div"/>
     </div>
 
     <div>
         <label>Description</label>
-        <form:input path="description" type="text"/>
+        <form:textarea path="description" type="text"/>
         <form:errors path="description" cssClass="errorForm" element="div"/>
     </div>
 

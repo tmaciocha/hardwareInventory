@@ -22,8 +22,8 @@
     <div>tasks : TODO</div>
     <div>number users whose contract will end in the next 3 months: TODO</div>
     <div>licence problems: MAYBE</div>
-    <div>users number: TODO</div>
-    <div>hardware number: TODO</div>
-    <div>software number: TODO</div>
+    <div>users number: ${usersNumber}</div>
+    <div>hardware number: ${hardwareNumber}</div>
+    <div>software number: ${softwareNumber}</div>
 </div>
 <%@ include file="/WEB-INF/views/fragments/footer.jsp" %>

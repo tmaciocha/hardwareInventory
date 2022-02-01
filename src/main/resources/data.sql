@@ -28,7 +28,7 @@ INSERT INTO softwaretypes (type) VALUES ('yearly paid');
 INSERT INTO softwaretypes (type) VALUES ('freeware');
 INSERT INTO softwaretypes (type) VALUES ('freemium');
 INSERT INTO softwaretypes (type) VALUES ('shareware');
-INSERT INTO softwaretypes (type) VALUES ('for learning');
+INSERT INTO softwaretypes (type) VALUES ('students or schools');
 INSERT INTO softwaretypes (type) VALUES ('trial');
 INSERT INTO softwaretypes (type) VALUES ('open source');
 INSERT INTO softwaretypes (type) VALUES ('subscription cloud based MONTHLY paid');
@@ -53,6 +53,7 @@ INSERT INTO producers (name) values ('NoName');
 INSERT INTO producers (name) values ('Samsung');
 INSERT INTO producers (name) values ('Toshiba');
 INSERT INTO producers (name) values ('Xiaomi');
+INSERT INTO producers (name) values ('Microsoft');
 
 INSERT INTO hardwarequalities (description, name) VALUES ('','brand new');
 INSERT INTO hardwarequalities (description, name) VALUES ('','used less than a year');

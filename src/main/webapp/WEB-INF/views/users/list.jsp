@@ -59,10 +59,10 @@
 
                 <c:forEach items="${users}" var="user">
                     <tr>
-                        <td colspan="">${user.firstName}</td>
-                        <td colspan="">${user.lastName}</td>
-                        <td colspan="">${user.username}</td>
-                        <td colspan="">${user.phoneNumber}</td>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                        <td>${user.username}</td>
+                        <td>${user.phoneNumber}</td>
                         <td><a href="edit/${user.id}">Edit</a></td>
                         <td><a href="remove/${user.id}">Remove</a></td>
                     </tr>

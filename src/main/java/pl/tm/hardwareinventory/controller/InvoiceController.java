@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.tm.hardwareinventory.model.Company;
 import pl.tm.hardwareinventory.model.Invoice;
 import pl.tm.hardwareinventory.repository.CompanyRepository;
@@ -16,6 +13,7 @@ import pl.tm.hardwareinventory.repository.InvoiceRepository;
 import javax.persistence.Column;
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -48,6 +46,27 @@ public class InvoiceController {
         return "redirect:/invoice/";
     }
 
+    //EDIT
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable long id, Model model){
+        Optional<Invoice> invoiceOptional = invoiceRepository.findById(id);
+        if(invoiceOptional.isPresent()) {
+            model.addAttribute("invoice", invoiceOptional.get());
+            model.addAttribute("sellers", companyRepository.findAll());
+        }else {
+            throw new IllegalArgumentException();
+        }
+        return ("/invoices/edit");
+    }
+
+    @PostMapping("/edit")
+    public String update (@Valid Invoice invoice, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return ("/invoices/edit");
+        }
+        invoiceRepository.save(invoice);
+        return "redirect:/invoice/";
+    }
 
 
 }

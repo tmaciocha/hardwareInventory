@@ -51,6 +51,10 @@ public class Hardware {
 
     Double netPrice;
 
+    Boolean usable;
+
+    Boolean inUse;
+
     @OneToOne
     Producer producer;
 
@@ -62,6 +66,7 @@ public class Hardware {
 
 
     @ManyToMany
+
     List<Software> softwareList = new ArrayList<>();
 
     @ManyToOne

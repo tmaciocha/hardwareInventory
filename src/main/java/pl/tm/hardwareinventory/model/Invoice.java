@@ -33,6 +33,9 @@ public class Invoice {
 
     String filename;
 
+    String description;
+
+    Boolean active;
 
     @ManyToOne
     Company company;
@@ -40,7 +43,9 @@ public class Invoice {
     public String getNumberCompany(){
         return "Nr " + number + ", FROM:  " + company.getName();
     }
-
+    public String getNumberCompanyDateDescription(){
+        return purchaseDate +", Nr " + number + ", " + company.getName()  +", " +  description;
+    }
 
 
 }
