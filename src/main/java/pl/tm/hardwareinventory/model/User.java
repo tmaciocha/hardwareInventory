@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -56,6 +57,25 @@ public class User {
 
 
     @ManyToMany
+    @JoinTable(
+            name = "users_software",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "software_id")})
     List<Software> softwareList = new ArrayList<>();
+
+
+   /* public void addSoftware(Software software){
+        this.softwareList.add(software);
+        software.getUsers().add(this);
+    }
+
+    public void removeSoftware(Software software){
+        this.softwareList.remove(software);
+        software.getUsers().remove(this);
+    }
+*/
+
+
+
 
 }

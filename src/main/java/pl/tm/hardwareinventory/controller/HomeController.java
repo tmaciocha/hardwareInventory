@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.tm.hardwareinventory.model.User;
+import pl.tm.hardwareinventory.repository.HardwareRepository;
 import pl.tm.hardwareinventory.repository.RoleRepository;
+import pl.tm.hardwareinventory.repository.SoftwareRepository;
 import pl.tm.hardwareinventory.repository.UserRepository;
 import pl.tm.hardwareinventory.service.UserService;
 
@@ -21,8 +23,10 @@ import java.util.Collections;
 public class HomeController {
     private final UserRepository userRepository;
     private final UserService userService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final RoleRepository roleRepository;
+    private final HardwareRepository hardwareRepository;
+    private final SoftwareRepository softwareRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
                                     /*@RequestMapping("/sample-logger")
                                     @ResponseBody
@@ -51,8 +55,14 @@ public class HomeController {
             user.setRoles(Collections.singleton(roleRepository.getById(2)));
             userService.saveUser(user);
             logger.info("!!!!!!Admin created!!!!!!");
+            model.addAttribute("usersNumber", userRepository.findAll().stream().count());
+            model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
+            model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());
             return "index";
         }
+        model.addAttribute("usersNumber", userRepository.findAll().stream().count());
+        model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
+        model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());
         return "index";
     }
 }

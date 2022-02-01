@@ -49,7 +49,11 @@
         <form:input path="purchaseDate" type="date"/>
         <form:errors path="purchaseDate" cssClass="errorForm" element="div"/>
     </div>
-
+    <div>
+        <label>description</label>
+        <form:textarea path="description" type="text"/>
+        <form:errors path="description" cssClass="errorForm" element="div"/>
+    </div>
     <div>
         <label>filename</label>
         <form:input path="filename" type="text"/>

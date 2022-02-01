@@ -37,7 +37,7 @@
 
     <div>
         <label>Description</label>
-        <form:input path="description" type="text"/>
+        <form:textarea path="description" type="text"/>
         <form:errors path="description" cssClass="errorForm" element="div"/>
     </div>
 
