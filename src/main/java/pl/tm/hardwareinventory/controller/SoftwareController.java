@@ -7,12 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import pl.tm.hardwareinventory.model.Hardware;
 import pl.tm.hardwareinventory.model.Software;
 import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Consumer;
@@ -108,46 +113,6 @@ public class SoftwareController {
 
 
 
-        /*
-        Map<String, List<Software>> softwareMap = new HashMap<>();
-    software.getUsers().forEach(u -> u.setSoftwareList(software));
-        software.getUsers().forEach(u -> {
-            softwareMap.put(u.getUsername(), u.getSoftwareList());
-        });
-
-        software.getUsers().forEach(u -> u.getSoftwareList().clear());// (emptyList));
-*/      //software.getUsers().clear();
-
-        /*Software software1 = software;
-        software.getUsers().forEach(u -> {
-            u.getSoftwareList().clear();
-            userRepository.save(u);
-        });
-*/
-    /*      softwareRepository.save(software);
-     */
-
-/*
-
-
-       software.getUsers().forEach(u -> {
-                    for (Map.Entry<String, List<Software>> entry : softwareMap.entrySet()) { //jest lista softu
-                        logger.info(u.getUsername() + "!!!!!!!!!!!!u.getUsername()!!!!!!!!!!!!!!!!!!");
-                        logger.info(entry.getValue().toString() +"!!!!!!!!!!!!!!!!entry.getValue().toString()!!!!!!!!!!!!1" );
-                        if (u.getUsername().equals(entry.getKey())) {
-                            u.setSoftwareList(entry.getValue());
-
-                            userRepository.save(u);
-                            logger.info(u.getSoftwareList().toString() + "!!!!!!!u.getSoftwareList().!!!!!!!!!!!!!!!!!!!!!!!");
-                        }
-                    }
-                }
-        );
-        software.setLogDate(LocalDate.now());
-        softwareRepository.save(software);
-*/
-
-
     @GetMapping("/details/{id}")
     public String details(@PathVariable long id, Model model) {
         Optional<Software> software = softwareRepository.findById(id);
@@ -158,6 +123,5 @@ public class SoftwareController {
         }
         return "software/details";
     }
-
 
 }

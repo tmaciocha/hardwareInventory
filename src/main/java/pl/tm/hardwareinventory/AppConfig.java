@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import pl.tm.hardwareinventory.converter.CompanyConverter;
@@ -45,5 +46,8 @@ public class AppConfig implements WebMvcConfigurer {
     public Validator validator() {
         return new LocalValidatorFactoryBean();
     }
+
+    @Bean
+    public CommonsMultipartResolver commonsMultipartResolver(){return  new CommonsMultipartResolver();}
 
 }
