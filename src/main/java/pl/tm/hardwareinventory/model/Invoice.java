@@ -35,7 +35,7 @@ public class Invoice {
 
     String description;
 
-    Boolean active;
+    Double netValue;
 
     @ManyToOne
     Company company;

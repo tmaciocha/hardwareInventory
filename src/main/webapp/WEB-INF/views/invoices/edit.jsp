@@ -30,6 +30,12 @@
 <form:form action="/invoice/edit" method="post" modelAttribute="invoice">
     <form:hidden path="id"/>
     <div>
+        <label>Seller</label>
+        <form:select path="company.id" items="${sellers}" itemLabel="nipName" itemValue="id"/>
+        <form:errors path="company" cssClass="errorForm" element="div"/>
+    </div>
+
+    <div>
         <label>Number</label>
         <form:input path="number" type="text"/>
         <form:errors path="number" cssClass="errorForm" element="div"/>
@@ -41,17 +47,22 @@
         <form:errors path="purchaseDate" cssClass="errorForm" element="div"/>
     </div>
     <div>
-        <label>Seller</label>
-        <form:select path="company.id" items="${sellers}" itemLabel="nipName" itemValue="id"/>
-        <form:errors path="company" cssClass="errorForm" element="div"/>
+        <label>net value</label>
+        <form:input path="netValue" type="number"/>
+        <form:errors path="netValue" cssClass="errorForm" element="div"/>
     </div>
+
 
     <div>
         <label>Description</label>
         <form:textarea path="description" type="text"/>
         <form:errors path="description" cssClass="errorForm" element="div"/>
     </div>
-
+    <div>
+        <label>filename</label>
+        <form:input path="filename" type="text"/>
+        <form:errors path="filename" cssClass="errorForm" element="div"/>
+    </div>
 
 
     <div><input value="save" type="submit"></div>

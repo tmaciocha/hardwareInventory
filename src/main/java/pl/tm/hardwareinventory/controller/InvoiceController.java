@@ -88,11 +88,11 @@ public class InvoiceController {
 
 
 
-    @RequestMapping("uploadform")
+   /* @RequestMapping("uploadform")
     public ModelAndView uploadForm(){
         return new ModelAndView("uploadform");
     }
-
+*/
     @RequestMapping(value="savefile",method=RequestMethod.POST)
     public ModelAndView saveimage( @RequestParam CommonsMultipartFile file,
                                    HttpSession session) throws Exception{
@@ -101,7 +101,7 @@ public class InvoiceController {
         String path = context.getRealPath(UPLOAD_DIRECTORY);
         String filename = file.getOriginalFilename();
 
-        System.out.println(path+" "+filename);
+        System.out.println(path+"/"+filename);
 
         byte[] bytes = file.getBytes();
         BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(
@@ -110,7 +110,7 @@ public class InvoiceController {
         stream.flush();
         stream.close();
 
-        return new ModelAndView("uploadform","filesuccess","File successfully saved!");
+        return new ModelAndView("redirect:/invoice/","filesuccess","File successfully saved!");
     }
 
 

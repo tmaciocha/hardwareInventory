@@ -24,10 +24,8 @@
 
 
 
-
-
 <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.User"--%>
-<form:form method="post" modelAttribute="invoice">
+<form:form method="post" modelAttribute="invoice" enctype="multipart/form-data"  action="/invoice/savefile" >
     <form:hidden path="id"/>
 
     <div>
@@ -49,6 +47,12 @@
         <form:input path="purchaseDate" type="date"/>
         <form:errors path="purchaseDate" cssClass="errorForm" element="div"/>
     </div>
+
+    <div>
+        <label>net value</label>
+        <form:input path="netValue"/>
+        <form:errors path="netValue" cssClass="errorForm" element="div"/>
+    </div>
     <div>
         <label>description</label>
         <form:textarea path="description" type="text"/>
@@ -59,6 +63,10 @@
         <form:input path="filename" type="text"/>
         <form:errors path="filename" cssClass="errorForm" element="div"/>
     </div>
+
+    <p><%--@declare id="image"--%><label for="image">Choose Invoice Image</label></p>
+    <p><input name="file" id="fileToUpload" type="file" /></p>
+  <%--  <p><input type="submit" value="Upload"></p>--%>
 
     <div><input value="save" type="submit"></div>
 
