@@ -65,7 +65,7 @@
                         <td colspan="">${invoice.company.nipName}</td>
                         <td>${invoice.description}</td>
                         <td><a href="edit/${invoice.id}">Edit</a></td>
-                        <td><a href="file/">Add file</a></td>
+                        <td><a href="file/${invoice.id}">Add file</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
