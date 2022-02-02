@@ -85,32 +85,22 @@ public class SoftwareController {
     }
 
     @PostMapping("/edit")
-    public String update(@Valid Software software, BindingResult bindingResult) {
+    public String update(@Valid Software software, BindingResult bindingResult, @RequestParam long id) {
         if (bindingResult.hasErrors()) {
             return "software/edit";
         }
-
         softwareRepository.save(software);
 
-        software.getUsers().forEach(u->{
-            logger.info(u.getUsername()+"!!1!USERNAME BEFORE CLEAR!!!");
-            logger.info(u.getSoftwareList().toString() + "!!2!SOFTWARELIST BEFORE REMOVE!!!");
-            u.getSoftwareList().clear();
-            logger.info(u.getUsername()+"!!3!USERNAME WHEN CLEAR!!!");
-            logger.info(u.getSoftwareList().toString() + "!!4!SOFTWARELIST WHEN REMOVE!!!");
+        userRepository.findAll().forEach(u -> {
+            List<Software> softwareList = u.getSoftwareList();
+            softwareList.removeIf(software1 -> software1.getId() == software.getId());
             userRepository.save(u);
         });
 
-        software.getUsers().forEach(u->{
-            logger.info(u.getUsername()+"!!!USERNAME Before ADD!!!");
-            logger.info(u.getSoftwareList().toString() + "!!!SOFTWARELIST before ADD!!!");
+        software.getUsers().forEach(u -> {
             u.getSoftwareList().add(software);
-            logger.info(u.getUsername()+"!!!USERNAME WHEN ADD!!!");
-            logger.info(u.getSoftwareList().toString() + "!!!SOFTWARELIST WHEN ADD!!!");
             userRepository.save(u);
         });
-
-
 
         return "redirect:/software/";
     }
