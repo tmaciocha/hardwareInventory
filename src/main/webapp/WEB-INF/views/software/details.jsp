@@ -12,98 +12,104 @@
 
 <html>
 <head>
-    <title>Hardware Details</title>
+    <title>Software Details</title>
 </head>
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Hardware: ${hardware.name}, ${hardware.serialNumber}, details: </h1>
+    <h1 class="mt-4"> Software: ${software.name} </h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
 
-    <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Producer"--%>
-    <form:form method="post" modelAttribute="hardware">
+    <form:form method="post" modelAttribute="software">
         <form:hidden path="id"/>
     <table>
-        <a href="/hardware/edit/${hardware.id}">Edit</a>
+        <a href="/software/edit/${software.id}">Edit</a>
         <tr>
-            <td>Serial Number</td>
-            <td>${hardware.serialNumber}</td>
-        </tr>
-        <tr>
-            <td>Name</td>
-            <td>${hardware.name}</td>
-        </tr>
-        <tr>
-            <td>Last Changes</td>
-            <td>${hardware.lastChangeDate}</td>
-        </tr>
-        <tr>
-            <td>Producer</td>
-            <td>${hardware.producer.name}</td>
-        </tr>
-        <tr>
-            <td>Type</td>
-            <td>${hardware.hardwareType.type}</td>
-        </tr>
-        <tr>
-            <td>Owner</td>
-            <td>${hardware.company.name}</td>
-        </tr>
-        <tr>
-            <td>User</td>
-            <td>${hardware.user.username}</td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>${hardware.description}</td>
-        </tr>
-        <tr>
-            <td>Purchase Date</td>
-            <td>${hardware.invoice.purchaseDate}</td>
-        </tr>
-        <tr>
-            <td>Quality</td>
-            <td>${hardware.hardwareQuality.name}</td>
-        </tr>
-        <tr>
-            <td>Invoice</td>
-            <td>${hardware.invoice.numberCompany}</td>
-        </tr>
-        <tr>
-            <td>MAC</td>
-            <td>${hardware.macNumber}</td>
+            <td>Active</td>
+            <td>${software.active}</td>
         </tr>
 
         <tr>
-            <td>Battery Quality</td>
-            <td>${hardware.batteryQuality}</td>
+            <td>Active Up to</td>
+            <td>${software.activeUpTo}</td>
         </tr>
         <tr>
-            <td>RAM (GB)</td>
-            <td>${hardware.ramAmount}</td>
+            <td>Owner</td>
+            <td>${software.company.nipName}</td>
         </tr>
         <tr>
-            <td>Production Date</td>
-            <td>${hardware.productionDate}</td>
+            <td>Description</td>
+            <td>${software.description}</td>
         </tr>
         <tr>
-            <td>Screen Size (inches)</td>
-            <td>${hardware.screenSize}</td>
+            <td>Producer Home Page</td>
+            <td>${software.homePage}</td>
         </tr>
         <tr>
-            <td>Disk Size (GB)</td>
-            <td>${hardware.discSize}</td>
+            <td>Invoice</td>
+            <td>${software.invoice.numberCompany}</td>
         </tr>
         <tr>
-            <td>Disk Type</td>
-            <td>${hardware.discType}</td>
+            <td>Last logs change</td>
+            <td>${software.logDate}</td>
+        </tr>
+
+        <tr>
+            <td>Manual</td>
+            <td>${software.manual}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>${software.name}</td>
         </tr>
         <tr>
             <td>Price (net)</td>
-            <td>${hardware.netPrice}</td>
+            <td>${software.netPrice}</td>
         </tr>
+
+        <tr>
+            <td>Producer</td>
+            <td>${software.producer.name}</td>
+        </tr>
+        <tr>
+            <td>Serial Key</td>
+            <td>${software.serialKey}</td>
+        </tr>
+        <tr>
+            <td>Licence Type</td>
+            <td>${software.softwareType.type}</td>
+        </tr>
+        <tr>
+            <td>Version</td>
+            <td>${software.version}</td>
+        </tr>
+
+        <tr>
+            <td>Installed on Hardware</td>
+            <td>
+            <c:forEach items="${software.hardwareList}" var="harware">
+                ${harware.serialNumber} ${harware.name}<br/>
+            </c:forEach>
+            </td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>
+
+                <c:forEach items="${software.users}"  var="user">
+                    ${user.username}, active: ${user.activeUser} <br/>
+                </c:forEach>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Purchase Date</td>
+            <td>${software.invoice.purchaseDate}</td>
+        </tr>
+
+
 
 
     </table>

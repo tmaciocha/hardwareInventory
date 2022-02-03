@@ -26,26 +26,72 @@
 
 
 
-    <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Producer"--%>
     <form:form action="/hardware/edit" method="post" modelAttribute="hardware">
         <form:hidden path="id"/>
+
+    <div>
+        <label>Is in use</label>
+        <form:checkbox path="inUse"/>
+    </div>
+    <div>
+        <label>Serial Number</label>
+        <form:input path="serialNumber" type="text"/>
+        <form:errors path="serialNumber" cssClass="errorForm" element="div"/>
+    </div>
+
     <div>
         <label>Name</label>
         <form:input path="name" type="text"/>
         <form:errors path="name" cssClass="errorForm" element="div"/>
     </div>
+    <div>
+        <label>Producer</label>
+        <form:select path="producer.id" items="${producers}" itemValue="id" itemLabel="name"/>
+        <a href="/producer/add" target="_blank">... or add new</a>
+        <form:errors path="producer" cssClass="errorForm" element="div"/>
+    </div>
 
     <div>
-        <label>Company</label>
-        <form:select path="company.id" itemValue="id" itemLabel="nipName" items="${companies}"/>  <a href="/company/add" target="_blank">... or add new</a>
-        <form:errors path="name" cssClass="errorForm" element="div"/>
+        <label>Usable</label>
+        <form:checkbox path="usable" />
+    </div>
+
+    <div>
+        <label>Type</label>
+        <form:select path="hardwareType.id" items="${hardwareTypes}" itemValue="id" itemLabel="type"/>
+        <a href="/hardwareType/add" target="_blank">... or add new</a>
+        <form:errors path="hardwareType" cssClass="errorForm" element="div"/>
+    </div>
+
+
+    <div>
+        <label>Owner (company)</label>
+        <form:select path="company.id" items="${companies}" itemValue="id" itemLabel="name"/>
+        <a href="/company/add" target="_blank">... or add new</a>
+        <form:errors path="company" cssClass="errorForm" element="div"/>
+    </div>
+
+    <div>
+        <label>Quality</label>
+        <form:select path="hardwareQuality.id"  items="${qualities}" itemLabel="name" itemValue="id" />
+        <form:errors path="hardwareQuality" cssClass="errorForm" element="div" />
     </div>
 
     <div>
         <label>User</label>
-        <form:select path="user.id" itemValue="id" itemLabel="username" items="${users}"/>  <a href="/user/add" target="_blank">... or add new</a>
-        <form:errors path="user" cssClass="errorForm" element="div"/>
+        <form:select path="user" items="${user}" itemValue="id" itemLabel="username" multiple="false"/>
+        <a href="/user/add" target="_blank">... or add new</a>
+        <form:errors path="user" cssClass="errorForm"/>
     </div>
+
+
+    <div>
+        <label>Installed software</label>
+        <form:checkboxes items="${softwareList}"  path="softwareList" itemLabel="name" itemValue="id" multiple="true" />
+        <a href="/software/add" target="_blank">... or add new</a>
+        <form:errors path="softwareList" cssClass="errorForm" element="div"/>
+    </div>
+
 
     <div>
         <label>Description</label>
@@ -54,37 +100,56 @@
     </div>
 
     <div>
-        <label>Quality</label>
-        <form:select path="hardwareQuality.id" items="${hardwareQualities}" itemLabel="name" itemValue="id"/>
-        <form:errors path="hardwareQuality" cssClass="errorForm" element="div"/>
-    </div>
-
-    <div>
-        <label>MAC</label>
-        <form:input path="macNumber" type="text"/>
-        <form:errors path="macNumber" cssClass="errorForm" element="div"/>
-    </div>
-    <div>
         <label>Battery Quality</label>
         <form:input path="batteryQuality" type="text"/>
         <form:errors path="batteryQuality" cssClass="errorForm" element="div"/>
     </div>
+
     <div>
-        <label>RAM (GB)</label>
-        <form:input path="ramAmount" type="number"/>
-        <form:errors path="ramAmount" cssClass="errorForm" element="div"/>
-    </div>
-    <div>
-        <label>Disk Size (GM)</label>
-        <form:input path="discSize" type="text"/>
+        <label>Disk Size (GB)</label>
+        <form:input path="discSize" type="number"/>
         <form:errors path="discSize" cssClass="errorForm" element="div"/>
     </div>
-
     <div>
         <label>Disk Type</label>
         <form:input path="discType" type="text"/>
         <form:errors path="discType" cssClass="errorForm" element="div"/>
     </div>
+    <div>
+        <label>Invoice</label>
+        <form:select path="invoice.id" items="${invoices}" itemValue="id" itemLabel="NumberCompanyDateDescription"/>
+        <a href="/invoice/add" target="_blank">... or add new</a>
+        <form:errors path="invoice" cssClass="errorForm" element="div"/>
+    </div>
+    <div>
+        <label>MAC number</label>
+        <form:input path="macNumber" type="text"/>
+        <form:errors path="macNumber" cssClass="errorForm" element="div"/>
+    </div>
+
+    <div>
+        <label>Net Price </label>
+        <form:input path="netPrice" />
+        <form:errors path="netPrice" cssClass="errorForm" element="div"/>
+    </div>
+    <div>
+        <label>Production Date</label>
+        <form:input  path="productionDate" type="date"/>
+        <form:errors path="productionDate" cssClass="errorForm" element="div" />
+    </div>
+
+    <div>
+        <label>RAM (GB)</label>
+        <form:input path="ramAmount" type="number"/>
+        <form:errors path="ramAmount" cssClass="errorForm" element="div"/>
+    </div>
+
+    <div>
+        <label>Screen Size (inches)</label>
+        <form:input path="screenSize" type="number"/>
+        <form:errors path="screenSize" cssClass="errorForm" element="div"/>
+    </div>
+
 
     <div><input value="save" type="submit"></div>
 

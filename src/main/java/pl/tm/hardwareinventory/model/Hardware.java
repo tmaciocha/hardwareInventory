@@ -66,7 +66,10 @@ public class Hardware {
 
 
     @ManyToMany
-
+    @JoinTable(
+            name = "hardware_software",
+            joinColumns = {@JoinColumn(name = "hardware_id")},
+            inverseJoinColumns = {@JoinColumn(name = "software_id")})
     List<Software> softwareList = new ArrayList<>();
 
     @ManyToOne

@@ -38,11 +38,10 @@ public class HardwareController {
         model.addAttribute("producers", producerRepository.findAllByOrderByNameAsc());
         model.addAttribute("hardwareTypes", hardwareTypeRepository.findAllByOrderByTypeAsc());
         model.addAttribute("companies", companyRepository.findAllByOrderByNameAsc());
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("user", userRepository.findAll());
         model.addAttribute("invoices", invoiceRepository.findAll());
         model.addAttribute("qualities", hardwareQualityRepository.findAll());
         model.addAttribute("softwareList", softwareRepository.findAll());
-        //model.addAttribute("softwareList", );
         return "/hardware/add";
     }
 
@@ -52,7 +51,18 @@ public class HardwareController {
             return "/hardware/add";
         }
         hardware.setLastChangeDate(LocalDate.now());
+        hardware.setInUse(true);
+        hardware.setUsable(true);
         hardwareRepository.save(hardware);
+
+
+        hardware.getSoftwareList().forEach(s -> {
+            s.getHardwareList().add(hardware);
+            softwareRepository.save(s);
+        });
+
+
+
         return "redirect:/hardware/";
     }
 
@@ -63,9 +73,13 @@ public class HardwareController {
         Optional<Hardware> hardware = hardwareRepository.findById(id);
         if (hardware.isPresent()) {
             model.addAttribute("hardware", hardware.get());
-            model.addAttribute("companies", companyRepository.findAll());
-            model.addAttribute("users", userRepository.findAll());
-            model.addAttribute("hardwareQualities", hardwareQualityRepository.findAll());
+            model.addAttribute("producers", producerRepository.findAllByOrderByNameAsc());
+            model.addAttribute("hardwareTypes", hardwareTypeRepository.findAllByOrderByTypeAsc());
+            model.addAttribute("companies", companyRepository.findAllByOrderByNameAsc());
+            model.addAttribute("user", userRepository.findAll());
+            model.addAttribute("invoices", invoiceRepository.findAll());
+            model.addAttribute("qualities", hardwareQualityRepository.findAll());
+            model.addAttribute("softwareList", softwareRepository.findAll());
         } else {
             throw new RuntimeException();
         }

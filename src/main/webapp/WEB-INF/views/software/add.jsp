@@ -66,13 +66,13 @@
     </div>
     <div>
         <label>User</label>
-        <form:select path="users" items="${userList}" itemValue="id" itemLabel="username" multiple="true"/>
+        <form:checkboxes path="users" items="${userList}" itemValue="id" itemLabel="username" multiple="true"/>
         <a href="/user/add" target="_blank">... or add new</a>
         <form:errors path="users" cssClass="errorForm"/>
     </div>
     <div>
         <label>Hardware List</label>
-        <form:select path="hardwareList" items="${hardwareList}" itemValue="id" itemLabel="name" multiple="true"/>
+        <form:checkboxes path="hardwareList" items="${hardwareList}" itemValue="id" itemLabel="name" multiple="true"/>
         <a href="/hardware/add" target="_blank">... or add new</a>
         <form:errors path="hardwareList" cssClass="errorForm" />
     </div>
