@@ -22,10 +22,8 @@
     <ol class="breadcrumb mb-4">
     </ol>
 
-    <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Producer"--%>
     <form:form method="post" modelAttribute="hardware">
         <form:hidden path="id"/>
-
 
     <div>
         <label>Serial Number</label>
@@ -62,17 +60,24 @@
     </div>
 
     <div>
-        <label>User</label>
-        <form:select path="user.id" items="${users}" itemValue="id" itemLabel="username"/>
-        <a href="/user/add" target="_blank">... or add new</a>
-        <form:errors path="user" cssClass="errorForm" element="div"/>
+        <label>Quality</label>
+        <form:select path="hardwareQuality.id"  items="${qualities}" itemLabel="name" itemValue="id" />
+        <form:errors path="hardwareQuality" cssClass="errorForm" element="div" />
     </div>
 
+      <div>
+        <label>User</label>
+        <form:select path="user" items="${user}" itemValue="id" itemLabel="username" multiple="false"/>
+        <a href="/user/add" target="_blank">... or add new</a>
+        <form:errors path="user" cssClass="errorForm"/>
+    </div>
+
+
     <div>
-        <label>Invoice</label>
-        <form:select path="invoice.id" items="${invoices}" itemValue="id" itemLabel="NumberCompanyDateDescription"/>
-        <a href="/invoice/add" target="_blank">... or add new</a>
-        <form:errors path="invoice" cssClass="errorForm" element="div"/>
+        <label>Installed software</label>
+        <form:checkboxes items="${softwareList}"  path="softwareList" itemLabel="name" itemValue="id" multiple="true" />
+        <a href="/software/add" target="_blank">... or add new</a>
+        <form:errors path="softwareList" cssClass="errorForm" element="div"/>
     </div>
 
 
@@ -83,38 +88,11 @@
     </div>
 
     <div>
-        <label>Production Date</label>
-        <form:input path="productionDate" type="date"/>
-        <form:errors path="productionDate" cssClass="errorForm" element="div" />
-    </div>
-    <div>
-        <label>Quality</label>
-        <form:select path="hardwareQuality.id"  items="${qualities}" itemLabel="name" itemValue="id" />
-        <form:errors path="hardwareQuality" cssClass="errorForm" element="div" />
-    </div>
-
-
-    <div>
-        <label>MAC number</label>
-        <form:input path="macNumber" type="text"/>
-        <form:errors path="macNumber" cssClass="errorForm" element="div"/>
-    </div>
-    <div>
         <label>Battery Quality</label>
         <form:input path="batteryQuality" type="text"/>
         <form:errors path="batteryQuality" cssClass="errorForm" element="div"/>
     </div>
-    <div>
-        <label>RAM (GB)</label>
-        <form:input path="ramAmount" type="number"/>
-        <form:errors path="ramAmount" cssClass="errorForm" element="div"/>
-    </div>
 
-    <div>
-        <label>Screen Size (inches)</label>
-        <form:input path="screenSize" type="number"/>
-        <form:errors path="screenSize" cssClass="errorForm" element="div"/>
-    </div>
     <div>
         <label>Disk Size (GB)</label>
         <form:input path="discSize" type="number"/>
@@ -126,10 +104,41 @@
         <form:errors path="discType" cssClass="errorForm" element="div"/>
     </div>
     <div>
+        <label>Invoice</label>
+        <form:select path="invoice.id" items="${invoices}" itemValue="id" itemLabel="NumberCompanyDateDescription"/>
+        <a href="/invoice/add" target="_blank">... or add new</a>
+        <form:errors path="invoice" cssClass="errorForm" element="div"/>
+    </div>
+    <div>
+        <label>MAC number</label>
+        <form:input path="macNumber" type="text"/>
+        <form:errors path="macNumber" cssClass="errorForm" element="div"/>
+    </div>
+
+    <div>
         <label>Net Price </label>
         <form:input path="netPrice" />
         <form:errors path="netPrice" cssClass="errorForm" element="div"/>
     </div>
+    <div>
+        <label>Production Date</label>
+        <form:input  path="productionDate" type="date"/>
+        <form:errors path="productionDate" cssClass="errorForm" element="div" />
+    </div>
+
+    <div>
+        <label>RAM (GB)</label>
+        <form:input path="ramAmount" type="number"/>
+        <form:errors path="ramAmount" cssClass="errorForm" element="div"/>
+    </div>
+
+    <div>
+        <label>Screen Size (inches)</label>
+        <form:input path="screenSize" type="number"/>
+        <form:errors path="screenSize" cssClass="errorForm" element="div"/>
+    </div>
+
+
 
 
     <div><input value="save" type="submit"></div>

@@ -41,10 +41,10 @@ public class Invoice {
     Company company;
 
     public String getNumberCompany(){
-        return "Nr " + number + ", FROM:  " + company.getName();
+        return number + ", seller:  " + company.getName();
     }
     public String getNumberCompanyDateDescription(){
-        return purchaseDate +", Nr " + number + ", " + company.getName()  +", " +  description;
+        return purchaseDate +",  " + number + ", " + company.getName()  +", " +  description;
     }
 
 

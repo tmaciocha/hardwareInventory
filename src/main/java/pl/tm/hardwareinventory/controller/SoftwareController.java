@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -55,7 +56,7 @@ public class SoftwareController {
     }
 
     @PostMapping("/add")
-    private String saveSoftware(@Valid Software software, BindingResult bindingResult, Model model) {
+    private String saveSoftware(@Valid Software software, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "software/add";
         }
@@ -80,9 +81,12 @@ public class SoftwareController {
         Optional<Software> software = softwareRepository.findById(id);
         if (software.isPresent()) {
             model.addAttribute("software", software.get());
-            model.addAttribute("companies", companyRepository.findAll());
-            model.addAttribute("users", userRepository.findAll());
             model.addAttribute("hardwareList", hardwareRepository.findAll());
+            model.addAttribute("producers", producerRepository.findAllByOrderByNameAsc());
+            model.addAttribute("softwareTypes", softwareTypeRepository.findAllByOrderByTypeAsc());
+            model.addAttribute("companies", companyRepository.findAllByOrderByNameAsc());
+            model.addAttribute("users", userRepository.findAll());
+            model.addAttribute("invoices", invoiceRepository.findAll());
         } else {
             throw new IllegalArgumentException();
         }
@@ -94,8 +98,10 @@ public class SoftwareController {
         if (bindingResult.hasErrors()) {
             return "software/edit";
         }
+        software.setLogDate(LocalDate.now());
         softwareRepository.save(software);
 
+        //users list editing
         userRepository.findAll().forEach(u -> {
             List<Software> softwareList = u.getSoftwareList();
             softwareList.removeIf(software1 -> software1.getId() == software.getId());
@@ -105,6 +111,18 @@ public class SoftwareController {
         software.getUsers().forEach(u -> {
             u.getSoftwareList().add(software);
             userRepository.save(u);
+        });
+
+
+        //hardware list editing
+        hardwareRepository.findAll().forEach(h -> {
+            List<Software> softwareList = h.getSoftwareList();
+            softwareList.removeIf(software1 -> software1.getId() == software.getId());
+            hardwareRepository.save(h);
+        });
+        software.getHardwareList().forEach(h->{
+            h.getSoftwareList().add(software);
+            hardwareRepository.save(h);
         });
 
         return "redirect:/software/";
@@ -118,6 +136,7 @@ public class SoftwareController {
         Optional<Software> software = softwareRepository.findById(id);
         if (software.isPresent()) {
             model.addAttribute("software", software.get());
+            model.addAttribute("users", userRepository.findAll());
         } else {
             throw new RuntimeException();
         }
