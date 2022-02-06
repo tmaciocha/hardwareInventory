@@ -58,15 +58,10 @@
         <form:textarea path="description" type="text"/>
         <form:errors path="description" cssClass="errorForm" element="div"/>
     </div>
-    <div>
-        <label>filename</label>
-        <form:input path="filename" type="text"/>
-        <form:errors path="filename" cssClass="errorForm" element="div"/>
-    </div>
+
 
     <p><%--@declare id="image"--%><label for="image">Choose invoice file:</label>
         <input name="file" id="fileToUpload" type="file" /></p>
-  <%--  <p><input type="submit" value="Upload"></p>--%>
 
     <div><input value="save" type="submit"></div>
 

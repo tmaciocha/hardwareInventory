@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.tm.hardwareinventory.model.Hardware;
 import pl.tm.hardwareinventory.model.Software;
 import pl.tm.hardwareinventory.model.Task;
+import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
 import pl.tm.hardwareinventory.service.TaskService;
 
@@ -26,11 +28,8 @@ public class TaskController {
     private final SoftwareRepository softwareRepository;
     private final TaskService taskService;
     private final HardwareRepository hardwareRepository;
-    private final ProducerRepository producerRepository;
-    private final SoftwareTypeRepository softwareTypeRepository;
-    private final CompanyRepository companyRepository;
     private final UserRepository userRepository;
-    private final InvoiceRepository invoiceRepository;
+    private final TaskRepository taskRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
@@ -42,34 +41,33 @@ public class TaskController {
     }
 
 
-/*    @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("task", new Task());
-        model.addAttribute("hardware", hardwareRepository.findAll());
-        model.addAttribute("software", softwareRepository.findAll());
-        model.addAttribute("software5", softwareRepository.findById(3l));
-        model.addAttribute("users", userRepository.findAll());
-        return "tasks/add";
-    }*/
-
-
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model){
+    public String edit(@PathVariable long id, Model model) {
+        model.getAttribute("hardware");
+        model.getAttribute("software");
+        model.getAttribute("user");
         Optional<Task> taskOptional = taskService.getTaskFromId(id);
-        if(taskOptional.isPresent()) {
+        if (taskOptional.isPresent()) {
             model.addAttribute("task", taskOptional.get());
-        }else {
+            taskOptional.get().setSoftware((Software) model.getAttribute("software"));
+            taskOptional.get().setHardware((Hardware) model.getAttribute("hardware"));
+            taskOptional.get().setUser((User) model.getAttribute("user"));
+        } else {
             throw new IllegalArgumentException();
         }
         return "tasks/edit";
     }
 
     @PostMapping("/edit")
-    public String update(@Valid Task task, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String update(@Valid Task task, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "tasks/edit";
         }
-        taskService.update(task);
+        task.setSoftware((Software) model.getAttribute("software"));
+        task.setHardware((Hardware) model.getAttribute("hardware"));
+        task.setUser((User)model.getAttribute("user"));
+
+        taskRepository.save(task);
         return "redirect:/";
     }
 

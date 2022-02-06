@@ -42,7 +42,8 @@
                 <tr>
                     <th>done</th>
                     <th>priority</th>
-                    <th>Created date</th>
+                    <th>Created/opened on</th>
+                    <th>Closed on</th>
                     <th>title</th>
                     <th>description</th>
                     <th>hardware</th>
@@ -54,7 +55,8 @@
                 <tr>
                     <th>done</th>
                     <th>priority</th>
-                    <th>Created</th>
+                    <th>Created/opened on</th>
+                    <th>Closed on</th>
                     <th>title</th>
                     <th>description</th>
                     <th>hardware</th>
@@ -69,6 +71,7 @@
                         <td>${task.status}</td>
                         <td>${task.priority}</td>
                         <td>${task.logDate}</td>
+                        <td>${task.closeDate}</td>
                         <td>${task.title}</td>
                         <td>${task.description}</td>
                         <td>${task.hardware.name} ${task.hardware.serialNumber}</td>

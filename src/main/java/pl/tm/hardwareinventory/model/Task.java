@@ -4,6 +4,7 @@ package pl.tm.hardwareinventory.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -33,7 +34,11 @@ public class Task {
 
     Boolean status;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate logDate;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate closeDate;
 
     @ManyToOne
     Software software;

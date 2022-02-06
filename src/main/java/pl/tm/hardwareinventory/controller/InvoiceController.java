@@ -41,11 +41,15 @@ public class InvoiceController {
     }
 
 
+
+
+
+
     @GetMapping("/")
     public String list(Model model){
         model.addAttribute("invoices",invoiceRepository.findAll());
         model.addAttribute("myFiles",myFileRepository.findAll());
-      //  model.addAttribute("company", companyRepository.findAll());
+        model.addAttribute("myFiles",myFileRepository.findAll());
         return ("/invoices/list");
     }
 

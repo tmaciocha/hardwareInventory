@@ -65,5 +65,8 @@ public class User {
     @ManyToOne
     MyFile myFile;
 
+    @OneToMany(mappedBy = "user")
+    List<Task> taskList = new ArrayList<>();
+
 
 }
