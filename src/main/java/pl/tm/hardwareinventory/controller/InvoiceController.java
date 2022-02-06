@@ -34,9 +34,17 @@ public class InvoiceController {
     private final MyFileRepository myFileRepository;
     private static final String UPLOAD_DIRECTORY ="/invoices";
 
+
+    @GetMapping("/viewFile")
+    public String testView(){
+        return "invoices/viewFile";
+    }
+
+
     @GetMapping("/")
     public String list(Model model){
         model.addAttribute("invoices",invoiceRepository.findAll());
+        model.addAttribute("myFiles",myFileRepository.findAll());
       //  model.addAttribute("company", companyRepository.findAll());
         return ("/invoices/list");
     }
@@ -117,6 +125,7 @@ public class InvoiceController {
 
         MyFile newFile = new MyFile();
         invoice.setFilename(filename);
+        invoice.setPathFile(path+"/"+filename);
         invoiceRepository.save(invoice);
         newFile.setInvoice(invoice);
         newFile.setFilename(filename);

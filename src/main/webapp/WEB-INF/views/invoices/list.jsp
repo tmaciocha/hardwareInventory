@@ -43,7 +43,8 @@
                     <th>number</th>
                     <th>purchase date</th>
                     <th>filename</th>
-                    <th>seller</th>
+                    <th>seller (NIP, name)</th>
+                    <th>description</th>
                 </tr>
                 </thead>
               <tfoot>
@@ -51,7 +52,8 @@
                     <th>number</th>
                     <th>purchase date</th>
                     <th>filename</th>
-                    <th>seller</th>
+                    <th>seller (NIP, name)</th>
+                    <th>description</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -64,8 +66,8 @@
                         <td colspan="">${invoice.filename}</td>
                         <td colspan="">${invoice.company.nipName}</td>
                         <td>${invoice.description}</td>
+                        <td><a href="/invoices/${invoice.filename}">View Invoice</a></td>
                         <td><a href="edit/${invoice.id}">Edit</a></td>
-                        <td><a href="file/${invoice.id}">Add file</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
