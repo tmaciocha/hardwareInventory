@@ -43,15 +43,10 @@ public class TaskController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
-        model.getAttribute("hardware");
-        model.getAttribute("software");
-        model.getAttribute("user");
         Optional<Task> taskOptional = taskService.getTaskFromId(id);
         if (taskOptional.isPresent()) {
             model.addAttribute("task", taskOptional.get());
-            taskOptional.get().setSoftware((Software) model.getAttribute("software"));
-            taskOptional.get().setHardware((Hardware) model.getAttribute("hardware"));
-            taskOptional.get().setUser((User) model.getAttribute("user"));
+
         } else {
             throw new IllegalArgumentException();
         }
@@ -63,9 +58,6 @@ public class TaskController {
         if (bindingResult.hasErrors()) {
             return "tasks/edit";
         }
-        task.setSoftware((Software) model.getAttribute("software"));
-        task.setHardware((Hardware) model.getAttribute("hardware"));
-        task.setUser((User)model.getAttribute("user"));
 
         taskRepository.save(task);
         return "redirect:/";
