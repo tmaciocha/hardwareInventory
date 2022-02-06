@@ -89,8 +89,10 @@
                         <td>${software.activeUpTo}</td>
                         <td>${software.active}</td>
 
+
                         <td><a href="details/${software.id}">Details</a></td>
                         <td><a href="edit/${software.id}">Edit</a></td>
+                        <td><a href="/task/add/software/${software.id}">Add Task</a></td>
                         <td><a href="file/">Add file</a></td>
 
                     </tr>
