@@ -32,15 +32,14 @@ public class Invoice {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate purchaseDate;
 
-    @NotBlank
+    //@NotBlank
     String filename;
 
     String description;
 
-    @NotBlank
+    //@NotBlank - walidacja
     Double netValue;
 
-    @NotBlank
     String pathFile;
 
     @ManyToOne

@@ -69,4 +69,7 @@ public class Software {
 
     @ManyToOne
     MyFile myFile;
+
+    @OneToMany(mappedBy = "software")
+    List<Task> taskList = new ArrayList<>();
 }

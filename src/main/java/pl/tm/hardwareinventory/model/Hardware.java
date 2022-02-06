@@ -81,9 +81,8 @@ public class Hardware {
     @OneToOne
     User user;
 
-    @OneToOne
-    @JoinColumn(name = "task_id")
-    Task task;
+    @OneToMany (mappedBy = "hardware")
+    List<Task> taskList = new ArrayList<>();
 
     @ManyToOne
     MyFile myFile;

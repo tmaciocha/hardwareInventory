@@ -28,7 +28,7 @@
 
 
 
-<form:form action="/task/edit/${taskStatusInt}" method="post" modelAttribute="task">
+<form:form action="/task/edit" method="post" modelAttribute="task">
         <form:hidden path="id"/>
     <div>
         <label>Is done? </label>
@@ -50,7 +50,9 @@
         <form:input path="priority" type="number"/>
         <form:errors path="priority" cssClass="errorForm"/>
     </div>
-
+    <div>
+        <label>Created: </label>${task.logDate}
+    </div>
     <div><input type="submit" value="save"/></div>
 
 </form:form>

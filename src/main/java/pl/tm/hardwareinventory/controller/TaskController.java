@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.tm.hardwareinventory.model.Hardware;
 import pl.tm.hardwareinventory.model.Software;
 import pl.tm.hardwareinventory.model.Task;
+import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
 import pl.tm.hardwareinventory.service.TaskService;
 
@@ -27,6 +29,7 @@ public class TaskController {
     private final TaskService taskService;
     private final HardwareRepository hardwareRepository;
     private final UserRepository userRepository;
+    private final TaskRepository taskRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
@@ -39,46 +42,32 @@ public class TaskController {
 
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model){
+    public String edit(@PathVariable long id, Model model) {
+        model.getAttribute("hardware");
+        model.getAttribute("software");
+        model.getAttribute("user");
         Optional<Task> taskOptional = taskService.getTaskFromId(id);
-        if(taskOptional.isPresent()) {
-            int taskStatusInt=0;
-            if(taskOptional.get().getStatus()){
-                taskStatusInt = 1;
-            };
+        if (taskOptional.isPresent()) {
             model.addAttribute("task", taskOptional.get());
-            model.addAttribute("taskStatusInt", taskStatusInt);
-        }else {
+            taskOptional.get().setSoftware((Software) model.getAttribute("software"));
+            taskOptional.get().setHardware((Hardware) model.getAttribute("hardware"));
+            taskOptional.get().setUser((User) model.getAttribute("user"));
+        } else {
             throw new IllegalArgumentException();
         }
         return "tasks/edit";
     }
 
-    @PostMapping("/edit/{taskStatusInt}")
-    public String update(@PathVariable int taskStatusInt, @Valid Task task, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    @PostMapping("/edit")
+    public String update(@Valid Task task, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "tasks/edit";
         }
-        Boolean historicalStatus=false;
-        if(taskStatusInt == 1){
-            logger.info(taskStatusInt + " !!!=!!!taskStatusInt ");
-            historicalStatus=true;
-        }
+        task.setSoftware((Software) model.getAttribute("software"));
+        task.setHardware((Hardware) model.getAttribute("hardware"));
+        task.setUser((User)model.getAttribute("user"));
 
-        if( historicalStatus == task.getStatus()){
-            if(task.getStatus()) {
-                task.setCloseDate(LocalDate.now());
-                logger.info(task.getCloseDate() + " !!!1=!!!task.getCloseDate()");
-                logger.info(task.getLogDate() + " !!!2=!!!task.getLogDate()");
-            }else{
-                task.setCloseDate(null);
-                task.setLogDate(LocalDate.now());
-                logger.info(task.getCloseDate() + " !!!3=!!!task.getCloseDate()");
-                logger.info(task.getLogDate() + " !!!4=!!!task.getLogDate()");
-        }
-
-        }
-        taskService.update(task);
+        taskRepository.save(task);
         return "redirect:/";
     }
 
