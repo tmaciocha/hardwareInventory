@@ -84,4 +84,7 @@ public class Hardware {
     @OneToOne
     @JoinColumn(name = "task_id")
     Task task;
+
+    @ManyToOne
+    MyFile myFile;
 }

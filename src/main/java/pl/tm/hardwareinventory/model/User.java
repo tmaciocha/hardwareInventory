@@ -62,7 +62,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "software_id")})
     List<Software> softwareList = new ArrayList<>();
 
-
+    @ManyToOne
+    MyFile myFile;
 
 
 }
