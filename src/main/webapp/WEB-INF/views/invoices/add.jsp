@@ -25,13 +25,13 @@
 
 
 <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.User"--%>
-<form:form method="post" modelAttribute="invoice" enctype="multipart/form-data"  action="/invoice/savefile" >
+<form:form method="post" modelAttribute="invoice" enctype="multipart/form-data"  action="/invoice/savefile/${invoice.id}" >
     <form:hidden path="id"/>
 
     <div>
         <label>seller</label>
         <form:select path="company.id" items="${companies}"  itemLabel="nipName" itemValue="id" />
-        <div><a href="/company/add" target="_blank">If doesn't exist add new</a></div>
+        <a href="/company/add" target="_blank">If doesn't exist add new</a>
         <form:errors path="company" cssClass="errorForm" element="div"/>
     </div>
 
@@ -64,8 +64,8 @@
         <form:errors path="filename" cssClass="errorForm" element="div"/>
     </div>
 
-    <p><%--@declare id="image"--%><label for="image">Choose Invoice Image</label></p>
-    <p><input name="file" id="fileToUpload" type="file" /></p>
+    <p><%--@declare id="image"--%><label for="image">Choose invoice file:</label>
+        <input name="file" id="fileToUpload" type="file" /></p>
   <%--  <p><input type="submit" value="Upload"></p>--%>
 
     <div><input value="save" type="submit"></div>

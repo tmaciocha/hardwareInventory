@@ -37,6 +37,8 @@ public class Invoice {
 
     Double netValue;
 
+    String pathFile;
+
     @ManyToOne
     Company company;
 
@@ -46,6 +48,7 @@ public class Invoice {
     public String getNumberCompanyDateDescription(){
         return purchaseDate +",  " + number + ", " + company.getName()  +", " +  description;
     }
+
 
 
 }

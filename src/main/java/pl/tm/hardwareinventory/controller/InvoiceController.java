@@ -7,10 +7,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import pl.tm.hardwareinventory.model.Company;
 import pl.tm.hardwareinventory.model.Invoice;
+import pl.tm.hardwareinventory.model.MyFile;
 import pl.tm.hardwareinventory.repository.CompanyRepository;
 import pl.tm.hardwareinventory.repository.InvoiceRepository;
+import pl.tm.hardwareinventory.repository.MyFileRepository;
 
 import javax.persistence.Column;
 import javax.servlet.ServletContext;
@@ -19,7 +20,9 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,7 +31,8 @@ import java.util.Optional;
 public class InvoiceController {
     private final InvoiceRepository invoiceRepository;
     private final CompanyRepository companyRepository;
-    private static final String UPLOAD_DIRECTORY ="/images";
+    private final MyFileRepository myFileRepository;
+    private static final String UPLOAD_DIRECTORY ="/invoices";
 
     @GetMapping("/")
     public String list(Model model){
@@ -85,27 +89,41 @@ public class InvoiceController {
     }
 
 
-
-
-
    /* @RequestMapping("uploadform")
     public ModelAndView uploadForm(){
         return new ModelAndView("uploadform");
     }
 */
-    @RequestMapping(value="savefile",method=RequestMethod.POST)
-    public ModelAndView saveimage( @RequestParam CommonsMultipartFile file,
+    @PostMapping("/savefile/{id}")
+    //@RequestMapping(value="savefile",method=RequestMethod.POST)
+    public ModelAndView saveimage(@PathVariable long id, @Valid Invoice invoice, BindingResult bindingResult, @RequestParam CommonsMultipartFile file,
                                    HttpSession session) throws Exception{
+            if (bindingResult.hasErrors()){
+                return new ModelAndView("/invoices/add");
+            }
+
+
+
 
         ServletContext context = session.getServletContext();
         String path = context.getRealPath(UPLOAD_DIRECTORY);
         String filename = file.getOriginalFilename();
 
-        System.out.println(path+"/"+filename);
+        //System.out.println(path+"/"+filename);
 
         byte[] bytes = file.getBytes();
         BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream( //pobieranie
                 new File(path + File.separator + filename)));
+
+        MyFile newFile = new MyFile();
+        invoice.setFilename(filename);
+        invoiceRepository.save(invoice);
+        newFile.setInvoice(invoice);
+        newFile.setFilename(filename);
+        newFile.setPathFile(path);
+        myFileRepository.save(newFile);
+
+
         stream.write(bytes);
         stream.flush();
         stream.close();
