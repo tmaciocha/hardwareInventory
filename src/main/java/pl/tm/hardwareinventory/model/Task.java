@@ -35,6 +35,8 @@ public class Task {
 
     LocalDate logDate;
 
+    LocalDate closeDate;
+
     @ManyToOne
     Software software;
 

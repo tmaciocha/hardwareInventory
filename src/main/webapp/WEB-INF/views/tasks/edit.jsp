@@ -28,9 +28,8 @@
 
 
 
-<form:form action="/task/edit" method="post" modelAttribute="task">
+<form:form action="/task/edit/${taskStatusInt}" method="post" modelAttribute="task">
         <form:hidden path="id"/>
-
     <div>
         <label>Is done? </label>
         <form:checkbox path="status"/>

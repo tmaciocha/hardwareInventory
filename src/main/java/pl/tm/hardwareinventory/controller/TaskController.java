@@ -26,11 +26,7 @@ public class TaskController {
     private final SoftwareRepository softwareRepository;
     private final TaskService taskService;
     private final HardwareRepository hardwareRepository;
-    private final ProducerRepository producerRepository;
-    private final SoftwareTypeRepository softwareTypeRepository;
-    private final CompanyRepository companyRepository;
     private final UserRepository userRepository;
-    private final InvoiceRepository invoiceRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
@@ -42,32 +38,45 @@ public class TaskController {
     }
 
 
-/*    @GetMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("task", new Task());
-        model.addAttribute("hardware", hardwareRepository.findAll());
-        model.addAttribute("software", softwareRepository.findAll());
-        model.addAttribute("software5", softwareRepository.findById(3l));
-        model.addAttribute("users", userRepository.findAll());
-        return "tasks/add";
-    }*/
-
-
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model){
         Optional<Task> taskOptional = taskService.getTaskFromId(id);
         if(taskOptional.isPresent()) {
+            int taskStatusInt=0;
+            if(taskOptional.get().getStatus()){
+                taskStatusInt = 1;
+            };
             model.addAttribute("task", taskOptional.get());
+            model.addAttribute("taskStatusInt", taskStatusInt);
         }else {
             throw new IllegalArgumentException();
         }
         return "tasks/edit";
     }
 
-    @PostMapping("/edit")
-    public String update(@Valid Task task, BindingResult bindingResult){
+    @PostMapping("/edit/{taskStatusInt}")
+    public String update(@PathVariable int taskStatusInt, @Valid Task task, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "tasks/edit";
+        }
+        Boolean historicalStatus=false;
+        if(taskStatusInt == 1){
+            logger.info(taskStatusInt + " !!!=!!!taskStatusInt ");
+            historicalStatus=true;
+        }
+
+        if( historicalStatus == task.getStatus()){
+            if(task.getStatus()) {
+                task.setCloseDate(LocalDate.now());
+                logger.info(task.getCloseDate() + " !!!1=!!!task.getCloseDate()");
+                logger.info(task.getLogDate() + " !!!2=!!!task.getLogDate()");
+            }else{
+                task.setCloseDate(null);
+                task.setLogDate(LocalDate.now());
+                logger.info(task.getCloseDate() + " !!!3=!!!task.getCloseDate()");
+                logger.info(task.getLogDate() + " !!!4=!!!task.getLogDate()");
+        }
+
         }
         taskService.update(task);
         return "redirect:/";

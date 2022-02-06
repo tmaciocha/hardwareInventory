@@ -3,6 +3,7 @@ package pl.tm.hardwareinventory.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.dialect.MySQL8Dialect;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,12 +32,15 @@ public class Invoice {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate purchaseDate;
 
+    @NotBlank
     String filename;
 
     String description;
 
+    @NotBlank
     Double netValue;
 
+    @NotBlank
     String pathFile;
 
     @ManyToOne
