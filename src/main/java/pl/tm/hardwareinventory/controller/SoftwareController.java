@@ -11,8 +11,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.tm.hardwareinventory.model.Hardware;
 import pl.tm.hardwareinventory.model.Software;
+import pl.tm.hardwareinventory.model.Task;
 import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
+import pl.tm.hardwareinventory.service.TaskService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -34,6 +36,7 @@ public class SoftwareController {
     private final CompanyRepository companyRepository;
     private final UserRepository userRepository;
     private final InvoiceRepository invoiceRepository;
+    private final TaskService taskService;
 
     private static final Logger logger = LoggerFactory.getLogger(SoftwareController.class);
 
@@ -46,17 +49,19 @@ public class SoftwareController {
     @GetMapping("/add")
     private String add(Model model) {
         model.addAttribute("software", new Software());
+        //model.addAttribute("newTask", new Task());
         model.addAttribute("producers", producerRepository.findAllByOrderByNameAsc());
         model.addAttribute("softwareTypes", softwareTypeRepository.findAllByOrderByTypeAsc());
         model.addAttribute("companies", companyRepository.findAllByOrderByNameAsc());
         model.addAttribute("userList", userRepository.findAll());
         model.addAttribute("invoices", invoiceRepository.findAll());
         model.addAttribute("hardwareList", hardwareRepository.findAll());
+
         return "software/add";
     }
 
     @PostMapping("/add")
-    private String saveSoftware(@Valid Software software, BindingResult bindingResult) {
+    private String saveSoftware(@RequestParam String saveSoft, @RequestParam long id, Model model, @Valid Software software, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "software/add";
         }
@@ -72,6 +77,13 @@ public class SoftwareController {
             hardwareRepository.save(h);
         });
 
+        if (saveSoft.equals("save")) {
+            return "redirect:/software/";
+        }
+        if (saveSoft.equals("saveAddTask")) {
+            model.addAttribute("software", software);
+            return "/tasks/add/software";
+        }
         return "redirect:/software/";
     }
 
@@ -120,15 +132,13 @@ public class SoftwareController {
             softwareList.removeIf(software1 -> software1.getId() == software.getId());
             hardwareRepository.save(h);
         });
-        software.getHardwareList().forEach(h->{
+        software.getHardwareList().forEach(h -> {
             h.getSoftwareList().add(software);
             hardwareRepository.save(h);
         });
 
         return "redirect:/software/";
     }
-
-
 
 
     @GetMapping("/details/{id}")

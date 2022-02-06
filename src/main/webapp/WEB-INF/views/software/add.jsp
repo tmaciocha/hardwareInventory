@@ -16,13 +16,12 @@
 </head>
 
 
-
 <div class="container-fluid px-4">
     <h1 class="mt-4"> Add new software:</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
-    <%--@elvariable id="user" type="pl.tm.hardwareinventory.model.Producer"--%>
+
     <form:form method="post" modelAttribute="software">
         <form:hidden path="id"/>
 
@@ -49,20 +48,20 @@
     <div>
         <label>Version</label>
         <form:input path="version" type="text"/>
-        <form:errors path="version" cssClass="errorForm" element="div" />
+        <form:errors path="version" cssClass="errorForm" element="div"/>
     </div>
 
     <div>
         <label>Producer web page</label>
         <form:input path="homePage" type="text"/>
-        <form:errors path="homePage" cssClass="errorForm" element="div" />
+        <form:errors path="homePage" cssClass="errorForm" element="div"/>
     </div>
 
 
     <div>
         <label>Serial key</label>
         <form:input path="serialKey" type="text"/>
-        <form:errors path="serialKey" cssClass="errorForm" element="div" />
+        <form:errors path="serialKey" cssClass="errorForm" element="div"/>
     </div>
     <div>
         <label>User</label>
@@ -74,7 +73,7 @@
         <label>Hardware List</label>
         <form:checkboxes path="hardwareList" items="${hardwareList}" itemValue="id" itemLabel="name" multiple="true"/>
         <a href="/hardware/add" target="_blank">... or add new</a>
-        <form:errors path="hardwareList" cssClass="errorForm" />
+        <form:errors path="hardwareList" cssClass="errorForm"/>
     </div>
 
     <div>
@@ -119,11 +118,12 @@
         <form:checkbox path="active"/>
     </div>
 
-    <div><input value="save" type="submit"></div>
 
+
+    <div><input value="save" type="submit" name="saveSoft"/></div>
+  <%--  <div><input value="saveAddTask" type="submit" name="saveSoft"/></div>--%>
 
     </form:form>
-
 
 
 <%@ include file="/WEB-INF/views/fragments/footer.jsp" %>

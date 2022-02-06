@@ -64,6 +64,7 @@
                         <td>${user.username}</td>
                         <td>${user.phoneNumber}</td>
                         <td><a href="edit/${user.id}">Edit</a></td>
+                        <td><a href="/task/add/user/${user.id}">Add task</a></td>
                         <td><a href="remove/${user.id}">Remove</a></td>
                     </tr>
                 </c:forEach>

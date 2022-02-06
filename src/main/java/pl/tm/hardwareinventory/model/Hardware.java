@@ -80,4 +80,8 @@ public class Hardware {
 
     @OneToOne
     User user;
+
+    @OneToOne
+    @JoinColumn(name = "task_id")
+    Task task;
 }

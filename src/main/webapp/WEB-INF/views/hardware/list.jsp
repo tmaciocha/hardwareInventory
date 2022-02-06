@@ -70,6 +70,7 @@
                         <td>${hardware.invoice.purchaseDate}</td>
                         <td><a href="details/${hardware.id}">Details</a></td>
                         <td><a href="edit/${hardware.id}">Edit</a></td>
+                        <td><a href="/task/add/hardware/${hardware.id}">Add Task</a></td>
                         <td><a href="file/">Add file</a></td>
 
                     </tr>

@@ -9,10 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.tm.hardwareinventory.model.User;
-import pl.tm.hardwareinventory.repository.HardwareRepository;
-import pl.tm.hardwareinventory.repository.RoleRepository;
-import pl.tm.hardwareinventory.repository.SoftwareRepository;
-import pl.tm.hardwareinventory.repository.UserRepository;
+import pl.tm.hardwareinventory.repository.*;
+import pl.tm.hardwareinventory.service.TaskService;
 import pl.tm.hardwareinventory.service.UserService;
 
 import java.time.LocalDateTime;
@@ -26,6 +24,8 @@ public class HomeController {
     private final RoleRepository roleRepository;
     private final HardwareRepository hardwareRepository;
     private final SoftwareRepository softwareRepository;
+    private final TaskService taskService;
+    private final TaskRepository taskRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
                                     /*@RequestMapping("/sample-logger")
@@ -54,15 +54,17 @@ public class HomeController {
             user.setSuperUser(true);
             user.setRoles(Collections.singleton(roleRepository.getById(2)));
             userService.saveUser(user);
-            logger.info("!!!!!!Admin created!!!!!!");
-            model.addAttribute("usersNumber", userRepository.findAll().stream().count());
-            model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
-            model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());
-            return "index";
+            logger.info("!!!!!!Admin created: admin@gmail.com, pass!!!!!!");
+
         }
+        model.addAttribute("tasks", taskRepository.findAllByOrderByPriorityDesc());
+        model.addAttribute("tasksNumber", taskService.number());
         model.addAttribute("usersNumber", userRepository.findAll().stream().count());
         model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
         model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());
+        model.addAttribute("softwareList", softwareRepository.findAll());
+        model.addAttribute("hardware",hardwareRepository.findAll());
+        model.addAttribute("users",userRepository.findAll());
         return "index";
     }
 }

@@ -104,7 +104,7 @@ public class InvoiceController {
         System.out.println(path+"/"+filename);
 
         byte[] bytes = file.getBytes();
-        BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(
+        BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream( //pobieranie
                 new File(path + File.separator + filename)));
         stream.write(bytes);
         stream.flush();
