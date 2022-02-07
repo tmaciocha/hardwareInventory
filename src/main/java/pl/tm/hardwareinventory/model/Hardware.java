@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class Hardware {
     String discType;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past
     LocalDate productionDate;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

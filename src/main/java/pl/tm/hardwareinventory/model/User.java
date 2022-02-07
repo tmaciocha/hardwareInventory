@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,17 @@ public class User {
     long id;
 
     @NotBlank(message = "First name is mandatory")
+    @Size(min = 2, max = 30, message = "First name to short or to long")
+    @Pattern(regexp = "/^([^0-9]*)$/", message = "First name can not include numbers.")
     String firstName;
 
     @NotBlank(message = "Surname is mandatory")
+    @Size(min = 2, max = 30, message = "Surname to short or to long")
     String lastName;
 
     @Column(nullable = false, unique = true, length = 60)
     @NotBlank(message = "Email is mandatory")
+    @Email
     String username;//email
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -52,6 +56,7 @@ public class User {
 
     @Nullable
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Future
     LocalDate endOfContract;
 
 
