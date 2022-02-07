@@ -30,6 +30,9 @@
 
 <form:form action="/task/edit" method="post" modelAttribute="task">
         <form:hidden path="id"/>
+        <form:hidden path="hardware.id"/>
+        <form:hidden path="software.id"/>
+        <form:hidden path="user.id"/>
     <div>
         <label>Is done? </label>
         <form:checkbox path="status"/>

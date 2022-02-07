@@ -14,6 +14,6 @@ public class LoginController {
 
     @PostMapping("/logout")
     public String logout(){
-return "/";
+return "/admin/logout";
     }
 }
