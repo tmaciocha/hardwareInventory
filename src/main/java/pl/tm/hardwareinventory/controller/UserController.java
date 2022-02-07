@@ -106,7 +106,7 @@ public class UserController {
             return "users/edit";
         }
         userService.saveUser(user);
-        return "redirect:/user/list";
+        return "redirect:/user/";
     }
 
 }

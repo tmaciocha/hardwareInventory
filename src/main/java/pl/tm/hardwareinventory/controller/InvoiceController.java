@@ -35,15 +35,6 @@ public class InvoiceController {
     private static final String UPLOAD_DIRECTORY ="/invoices";
 
 
-    @GetMapping("/viewFile")
-    public String testView(){
-        return "invoices/viewFile";
-    }
-
-
-
-
-
 
     @GetMapping("/")
     public String list(Model model){

@@ -17,8 +17,8 @@
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Add task for
-        </br>${software.get().name} ${software.get().version}, serial: ${software.get().serialKey}</h1>
+    <h1 class="mt-4"> Add task for</h1>
+    <h2>${software.get().name} ${software.get().version}, serial: ${software.get().serialKey}</h2>
     <ol class="breadcrumb mb-4">
     </ol>
 

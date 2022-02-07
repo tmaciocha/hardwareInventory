@@ -18,7 +18,7 @@
 
 <div class="container-fluid px-4">
     <h1 class="mt-4"> Add task for
-        </br>${user.get().username} ${user.get().firstName}, serial: ${user.get().lastName}</h1>
+        </br>${user.get().username}; ${user.get().firstName} ${user.get().lastName}</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 

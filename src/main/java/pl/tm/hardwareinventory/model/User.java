@@ -24,13 +24,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @NotBlank
+    @NotBlank(message = "First name is mandatory")
     String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Surname is mandatory")
     String lastName;
 
     @Column(nullable = false, unique = true, length = 60)
+    @NotBlank(message = "Email is mandatory")
     String username;//email
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -38,7 +39,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @NotBlank
+    @NotBlank(message = "Password is mandatory")
     String password;
 
     String domainUserName;

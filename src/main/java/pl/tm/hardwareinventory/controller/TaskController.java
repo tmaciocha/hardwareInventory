@@ -38,6 +38,7 @@ public class TaskController {
     public String list(Model model) {
         model.addAttribute("tasks", taskService.getTasks());
         return "tasks/list";
+
     }
 
 
@@ -54,11 +55,10 @@ public class TaskController {
     }
 
     @PostMapping("/edit")
-    public String update(@Valid Task task, BindingResult bindingResult, Model model) {
+    public String update(@Valid Task task, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "tasks/edit";
         }
-
         taskRepository.save(task);
         return "redirect:/";
     }
