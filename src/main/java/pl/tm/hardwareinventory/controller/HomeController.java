@@ -6,10 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
+import pl.tm.hardwareinventory.service.JpaTaskServiceImpl;
 import pl.tm.hardwareinventory.service.TaskService;
 import pl.tm.hardwareinventory.service.UserService;
 
@@ -24,8 +26,9 @@ public class HomeController {
     private final RoleRepository roleRepository;
     private final HardwareRepository hardwareRepository;
     private final SoftwareRepository softwareRepository;
+    private final JpaTaskServiceImpl jpaTaskService;
     private final TaskService taskService;
-    private final TaskRepository taskRepository;
+    //private final TaskRepository taskRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
                                     /*@RequestMapping("/sample-logger")
@@ -41,7 +44,7 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String homePage(Model model){
+    public String homePage(Model model, ModelMap modelMap){
         logger.info("!!!!!!Welcome in Hardware Inventory App!!!!!!");
         if(userRepository.findByUsername("admin@gmail.com") == null){
             User user = new User();
@@ -57,7 +60,8 @@ public class HomeController {
             logger.info("!!!!!!Admin created: admin@gmail.com, pass!!!!!!");
 
         }
-        model.addAttribute("tasks", taskRepository.findAllByOrderByPriorityDesc());
+        //model.addAttribute("tasks", taskRepository.findAllByOrderByPriorityDesc());
+        modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
         model.addAttribute("tasksNumber", taskService.number());
         model.addAttribute("usersNumber", userRepository.findAll().stream().count());
         model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());

@@ -23,7 +23,7 @@
     </ol>
 
 
-    <form:form method="post" action="" >
+    <form:form method="post" action="" modelAttribute="tasksDto">
         <div>
             <label for="username">find task: </label>
             <input name="username" id="username" type="text" placeholder="Later by number or date">
@@ -65,17 +65,17 @@
                 <tbody>
 
 
-                <c:forEach items="${tasks}" var="task">
+                <c:forEach items="${tasksDto}" var="task">
                     <tr>
                         <td>${task.status}</td>
                         <td>${task.priority}</td>
                         <td>${task.logDate}</td>
                         <td>${task.title}</td>
                         <td>${task.description}</td>
-                        <td>${task.hardware.name} ${task.hardware.serialNumber} </td>
-                        <td>${task.software.name} ${task.software.producer} ${task.software.version}</td>
-                        <td>${task.user.username}</td>
-                        <td><a href="edit/${task.id}">Edit</a></td>
+                        <td>${task.serialNumber} ${task.hardwareName}  </td>
+                        <%--<td>${task.software.name} ${task.software.producer} ${task.software.version}</td>--%>
+                        <td>${task.username}</td>
+                        <td><a href="edit/${task.taskId}">Edit</a></td>
 
                     </tr>
                 </c:forEach>

@@ -66,7 +66,7 @@
                 </tfoot>
                 <tbody>
 
-                <c:forEach items="${tasks}" var="task">
+                <c:forEach items="${tasksDto}" var="task">
                     <tr>
                         <td>${task.status}</td>
                         <td>${task.priority}</td>
@@ -74,10 +74,10 @@
                         <td>${task.closeDate}</td>
                         <td>${task.title}</td>
                         <td>${task.description}</td>
-                        <td>${task.hardware.name} ${task.hardware.serialNumber}</td>
-                        <td>${task.software.name} ${task.software.version} ${task.software.serialKey}</td>
-                        <td>${task.user.username}</td>
-                        <td><a href="task/edit/${task.id}">Edit</a></td>
+                        <td>${task.serialNumber} ${task.hardwareName}  </td>
+                        <td>${task.softwareName} ${task.softwareProducerName}</td>
+                        <td>${task.username} ${task.}</td>
+                        <td><a href="task/edit/${task.taskId}">Edit</a></td>
 
                     </tr>
                 </c:forEach>
