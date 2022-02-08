@@ -51,7 +51,17 @@
                 <li>
                     <hr class="dropdown-divider"/>
                 </li>
-                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+
+
+                <sec:authorize access="isAnonymous()">
+                    <li><a class="dropdown-item" href="/login">Login</a></li>
+                </sec:authorize>
+
+                <sec:authorize access="isAuthenticated()">
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </sec:authorize>
+
+
             </ul>
         </li>
     </ul>
@@ -154,7 +164,13 @@
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
-                Guest
+                <sec:authorize access="isAnonymous()">
+                        Guest
+                </sec:authorize>
+
+                <sec:authorize access="isAuthenticated()">
+                   <sec:authentication property="principal.username"/>
+                </sec:authorize>
             </div>
         </nav>
     </div>

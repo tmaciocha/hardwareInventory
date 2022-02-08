@@ -6,6 +6,8 @@ import pl.tm.hardwareinventory.dto.TaskUserHardwareSoftwareDTO;
 import pl.tm.hardwareinventory.model.Task;
 import pl.tm.hardwareinventory.repository.TaskRepository;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -82,8 +84,7 @@ public class JpaTaskServiceImpl implements TaskService {
         if(task.getUser() != null){
             taskUserHardwareSoftwareDTO.setUsername(task.getUser().getUsername());
         }
-
-        return  taskUserHardwareSoftwareDTO;
+        return taskUserHardwareSoftwareDTO;
     }
 
 }
