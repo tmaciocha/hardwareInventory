@@ -3,23 +3,24 @@ package pl.tm.hardwareinventory.controller;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.Banner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.tm.hardwareinventory.dto.TaskUserHardwareSoftwareDTO;
 import pl.tm.hardwareinventory.model.Hardware;
 import pl.tm.hardwareinventory.model.Software;
 import pl.tm.hardwareinventory.model.Task;
-import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
+import pl.tm.hardwareinventory.service.JpaTaskServiceImpl;
 import pl.tm.hardwareinventory.service.TaskService;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 @RequestMapping("/task")
@@ -30,24 +31,23 @@ public class TaskController {
     private final HardwareRepository hardwareRepository;
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
+    private final JpaTaskServiceImpl jpaTaskService;
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
 
-    @GetMapping("/")
-    public String list(Model model) {
-        model.addAttribute("tasks", taskService.getTasks());
+    @GetMapping("/all-tasks")
+    public String taskListDto(ModelMap model) {
+        model.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
         return "tasks/list";
-
     }
 
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model) {
-        Optional<Task> taskOptional = taskService.getTaskFromId(id);
+    public String edit(@PathVariable long id, ModelMap model) {
+        Optional<Task> taskOptional = jpaTaskService.getTaskFromId(id);
         if (taskOptional.isPresent()) {
-            model.addAttribute("task", taskOptional.get());
-
+            model.addAttribute("taskDto", taskOptional.get());
         } else {
             throw new IllegalArgumentException();
         }
@@ -55,13 +55,36 @@ public class TaskController {
     }
 
     @PostMapping("/edit")
-    public String update(@Valid Task task, BindingResult bindingResult) {
+    public String update(@RequestParam long id, @Valid TaskUserHardwareSoftwareDTO taskDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "tasks/edit";
         }
-        taskRepository.save(task);
+        Optional<Task> taskOptional = taskRepository.findById(id);
+        if(taskOptional.isPresent()){
+
+            Task taskToUpdate = taskOptional.get();
+            taskToUpdate.setId(taskOptional.get().getId());
+            taskToUpdate.setLogDate(taskOptional.get().getLogDate());
+            if(taskToUpdate.getStatus() == false) {
+                if (taskDto.getStatus() == true) {
+                    taskToUpdate.setCloseDate(LocalDate.now());
+                }
+            }
+            if(taskToUpdate.getStatus()){
+                if(taskDto.getStatus() == false){
+                    taskToUpdate.setCloseDate(null);
+                    taskToUpdate.setLogDate(LocalDate.now());
+                }
+            }
+            taskToUpdate.setDescription(taskDto.getDescription());
+            taskToUpdate.setPriority(taskDto.getPriority());
+            taskToUpdate.setStatus(taskDto.getStatus());
+            taskToUpdate.setTitle(taskDto.getTitle());
+            taskService.update(taskToUpdate);
+        }
         return "redirect:/";
     }
+
 
 
     @GetMapping("/add/software/{softwareId}")
@@ -76,10 +99,13 @@ public class TaskController {
         if (bindingResultTask.hasErrors()) {
             return "tasks/add/software";
         }
+
+
         task.setStatus(false);
         task.setSoftware(softwareRepository.getById(softwareId));
         task.setLogDate(LocalDate.now());
         taskService.add(task);
+
         return "redirect:/";
     }
 

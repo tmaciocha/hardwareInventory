@@ -18,21 +18,20 @@
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Edit task id: ${task.id},
-        <c:if test="${not empty task.software.name}">        Software: ${task.software.name},        </c:if>
-        <c:if test="${not empty task.hardware.name}">        Hardware: ${task.hardware.name},        </c:if>
-        <c:if test="${not empty task.user.username}">        User: ${task.user.username},        </c:if>
+    <h1 class="mt-4"> Edit task id: ${taskDto.id},
+        <c:if test="${not empty taskDto.software.name}">        Software: ${taskDto.software.name},        </c:if>
+        <c:if test="${not empty taskDto.hardware.name}">        Hardware: ${taskDto.hardware.name},        </c:if>
+        <c:if test="${not empty taskDto.user.username}">        User: ${taskDto.user.username},        </c:if>
         </h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
 
 
-<form:form action="/task/edit" method="post" modelAttribute="task">
+<form:form action="/task/edit" method="post" modelAttribute="taskDto">
         <form:hidden path="id"/>
-        <form:hidden path="hardware.id"/>
-        <form:hidden path="software.id"/>
-        <form:hidden path="user.id"/>
+
+
     <div>
         <label>Is done? </label>
         <form:checkbox path="status"/>
@@ -53,9 +52,23 @@
         <form:input path="priority" type="number"/>
         <form:errors path="priority" cssClass="errorForm"/>
     </div>
+
     <div>
-        <label>Created: </label>${task.logDate}
+        <label>Created: </label>${taskDto.logDate}
     </div>
+    <div>
+        <label>CLose date: </label>${taskDto.closeDate}
+    </div>
+    <div>
+        Hardware Id: ${taskDto.hardware.id}
+    </div>
+    <div>
+        Software Id: ${taskDto.software.id}
+    </div>
+    <div>
+        User Id: ${taskDto.user.id}
+    </div>
+
     <div><input type="submit" value="save"/></div>
 
 </form:form>
