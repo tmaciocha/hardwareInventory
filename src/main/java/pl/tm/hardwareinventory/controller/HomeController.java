@@ -28,19 +28,8 @@ public class HomeController {
     private final SoftwareRepository softwareRepository;
     private final JpaTaskServiceImpl jpaTaskService;
     private final TaskService taskService;
-    //private final TaskRepository taskRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-                                    /*@RequestMapping("/sample-logger")
-                                    @ResponseBody
-                                    public String sample() {
-                                    logger.info("simple log");
-                                    int a = 2;
-                                    int b = 5;
-                                    logger.debug("a = {}, b = {} ", a, b);
-                                    return "sample";
-                                    }*/
-
 
 
     @GetMapping("/")
@@ -60,9 +49,10 @@ public class HomeController {
             logger.info("!!!!!!Admin created: admin@gmail.com, pass!!!!!!");
 
         }
-        //model.addAttribute("tasks", taskRepository.findAllByOrderByPriorityDesc());
         modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
         model.addAttribute("tasksNumber", taskService.number());
+        model.addAttribute("users3MonthsEnd", userRepository.activeUserNumberWhereContractEndInThreeMonth());
+    //    model.addAttribute("usersEndedContract", userRepository.activeUsersNumberWhichContractIsFinished());
         model.addAttribute("usersNumber", userRepository.findAll().stream().count());
         model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
         model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());

@@ -11,27 +11,34 @@
 <html>
 <title>Home Page</title>
 </html>
-            <div class="container-fluid px-4">
-                <h1 class="mt-4">Dashboard</h1>
-                <ol class="breadcrumb mb-4">
-                 <%--   <li class="breadcrumb-item active">Dashboard</li>--%>
-                </ol>
-            </div>
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard</h1>
+    <ol class="breadcrumb mb-4">
+        <%--   <li class="breadcrumb-item active">Dashboard</li>--%>
+    </ol>
+</div>
 
 <div>
 
 
-
-
     <div class="card mb-4">
         <div class="card-header">
-            <div>users number  whose contract will end in the next 3 months: TODO</div>
+            <c:if test="${users3MonthsEnd > 0}">
+            <div style="color: #ff3e2d">Active users which contract ends in 3 months, or has ended: ${users3MonthsEnd}</div>
+            </c:if>
+
             <div>tasks: ${tasksNumber}</div>
             <div>users: ${usersNumber}</div>
             <div>hardware: ${hardwareNumber}</div>
             <div>software: ${softwareNumber}</div>
 
+
+            <sec:authorize access="isAuthenticated()">
             <hr>
+
+
+
+
 
             <i class="fas fa-table me-1"></i>
             All tasks
@@ -68,7 +75,7 @@
 
                 <c:forEach items="${tasksDto}" var="task">
                     <tr>
-                        <td>${task.status}</td>
+                        <td><c:if test="${task.status == true }">&#10004;</c:if></td>
                         <td>${task.priority}</td>
                         <td>${task.logDate}</td>
                         <td>${task.closeDate}</td>
@@ -76,7 +83,7 @@
                         <td>${task.description}</td>
                         <td>${task.serialNumber} ${task.hardwareName}  </td>
                         <td>${task.softwareName} ${task.softwareProducerName}</td>
-                        <td>${task.username} ${task.}</td>
+                        <td>${task.username}</td>
                         <td><a href="task/edit/${task.taskId}">Edit</a></td>
 
                     </tr>
@@ -84,6 +91,7 @@
                 </tbody>
             </table>
         </div>
+        </sec:authorize>
     </div>
 </div>
 

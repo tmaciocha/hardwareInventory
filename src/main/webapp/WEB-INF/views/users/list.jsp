@@ -44,6 +44,7 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Contract ends</th>
                 </tr>
                 </thead>
               <tfoot>
@@ -52,6 +53,7 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Contract ends</th>
                 </tr>
                 </tfoot>
                 <tbody>
@@ -63,6 +65,7 @@
                         <td>${user.lastName}</td>
                         <td>${user.username}</td>
                         <td>${user.phoneNumber}</td>
+                        <td>${user.endOfContract}</td>
                         <td><a href="edit/${user.id}">Edit</a></td>
                         <td><a href="/task/add/user/${user.id}">Add task</a></td>
                         <td><a href="remove/${user.id}">Remove</a></td>
