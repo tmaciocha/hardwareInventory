@@ -24,6 +24,7 @@
 
 
     <form:form method="post" action="/user/filter" >
+
         <div>
             <label for="username">find user: </label>
             <input name="username" id="username" type="text" placeholder="DO ZROBIENIA PÓŹNIEJ - email address">
@@ -36,10 +37,11 @@
             All users
         </div>
         <div class="card-body">
-            <a href="add/">Add new</a>
+            <a href="add">Add new</a>
             <table id="datatablesSimple">
                 <thead>
                 <tr>
+                    <th>Active</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -49,6 +51,7 @@
                 </thead>
               <tfoot>
                 <tr>
+                    <th>Active</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -61,14 +64,19 @@
 
                 <c:forEach items="${users}" var="user">
                     <tr>
+                        <td><c:if test="${user.activeUser == true }">&#10004;</c:if></td>
                         <td>${user.firstName}</td>
                         <td>${user.lastName}</td>
                         <td>${user.username}</td>
                         <td>${user.phoneNumber}</td>
                         <td>${user.endOfContract}</td>
+
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <td><a href="edit/${user.id}">Edit</a></td>
+                        </sec:authorize>
+
                         <td><a href="/task/add/user/${user.id}">Add task</a></td>
-                        <td><a href="remove/${user.id}">Remove</a></td>
+                       <%-- <td><a href="remove/${user.id}">Remove</a></td>--%>
                     </tr>
                 </c:forEach>
                 </tbody>

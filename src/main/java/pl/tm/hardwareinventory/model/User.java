@@ -26,7 +26,7 @@ public class User {
 
     @NotBlank(message = "First name is mandatory")
     @Size(min = 2, max = 30, message = "First name to short or to long")
-    @Pattern(regexp = "/^([^0-9]*)$/", message = "First name can not include numbers.")
+    @Pattern(regexp = "^([^0-9]*)$", message = "First name cannot include numbers.")
     String firstName;
 
     @NotBlank(message = "Surname is mandatory")

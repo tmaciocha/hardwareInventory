@@ -39,6 +39,9 @@ public class UserController {
     @GetMapping("/remove/{id}")
     public String getRemoveForm(@PathVariable long id, Model model) {
         model.addAttribute("userId", id);
+        if(id == 1){
+            return "users/deleteAdmin";
+        }
         return "users/delete";
     }
 
@@ -51,7 +54,7 @@ public class UserController {
                 model.addAttribute("userId", null);
             }
         }
-        return "redirect:/user/list";
+        return "redirect:/user/";
     }
 
 
