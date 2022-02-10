@@ -54,6 +54,11 @@ public class JpaTaskServiceImpl implements TaskService {
         return this.taskRepository.findById(id);
     }
 
+    @Override
+    public int numberActiveTask() {
+        return taskRepository.countActiveTask();
+    }
+
     public List<TaskUserHardwareSoftwareDTO> getAllTaskUserHardwareSoftware() {
         return taskRepository.findAll()
                 .stream()

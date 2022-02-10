@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/views/fragments/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <title>Home Page</title>
 </html>
@@ -27,22 +28,30 @@
             <div style="color: #ff3e2d">Active users which contract ends in 3 months, or has ended: ${users3MonthsEnd}</div>
             </c:if>
 
-            <div>tasks: ${tasksNumber}</div>
+            <div>Active tasks:
+                <c:if test="${tasksNumber > 0}"><h5 style="color: red"> ${tasksNumber} </h5></c:if>
+                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go on a walk!</h4> </c:if>
+
+
+
+
+                    </div>
+<sec:authorize access="isAnonymous()">
             <div>users: ${usersNumber}</div>
             <div>hardware: ${hardwareNumber}</div>
             <div>software: ${softwareNumber}</div>
 
-
+</sec:authorize>
             <sec:authorize access="isAuthenticated()">
             <hr>
 
 
 
-
-
             <i class="fas fa-table me-1"></i>
-            All tasks
-        </div>
+            All tasks</br>
+         <label>show done
+        <%--    <form:checkbox path="showFinished"/>--%>
+        </label></div>
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>

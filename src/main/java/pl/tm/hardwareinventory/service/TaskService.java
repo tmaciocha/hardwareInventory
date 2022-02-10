@@ -24,6 +24,8 @@ public interface TaskService {
 
     Optional<Task> getTaskFromId(Long id);
 
+    int numberActiveTask();
+
 
 
 }

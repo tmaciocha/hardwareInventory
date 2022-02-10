@@ -60,7 +60,7 @@
     </div>
     <div>
         <label>filename</label>
-        <form:input path="filename" type="text"/>
+        <form:input path="filename" type="text" readonly="true"/>
         <form:errors path="filename" cssClass="errorForm" element="div"/>
     </div>
 

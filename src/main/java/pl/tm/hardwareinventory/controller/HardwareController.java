@@ -1,16 +1,20 @@
 package pl.tm.hardwareinventory.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.tm.hardwareinventory.model.Hardware;
 import pl.tm.hardwareinventory.model.HardwareType;
+import pl.tm.hardwareinventory.model.User;
 import pl.tm.hardwareinventory.repository.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +29,8 @@ public class HardwareController {
     private final InvoiceRepository invoiceRepository;
     private final HardwareQualityRepository hardwareQualityRepository;
     private final SoftwareRepository softwareRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(HardwareController.class);
 
     @GetMapping("/")
     private String list(Model model){
@@ -106,5 +112,25 @@ public class HardwareController {
             throw new RuntimeException();
         }
         return "hardware/details";
+    }
+
+
+
+    @PostMapping("/search")
+    public String findHardware(@RequestParam String search, Model model){
+        model.addAttribute("search", search);
+        if(search.contains("@")){
+            User user = userRepository.findByUsername(search);
+            List<Hardware> hardwareList = hardwareRepository.findAllByUserId(user.getId());
+            model.addAttribute("hardwareSearch", hardwareList);
+            return "hardware/find";
+        }
+
+        List<Hardware> hardwareList = hardwareRepository.findAllWhereIsSearch(search);
+            if(hardwareList.size()>0){
+            model.addAttribute("hardwareSearch", hardwareList);
+            return "hardware/find";
+        }
+        return "redirect:/hardware/";
     }
 }

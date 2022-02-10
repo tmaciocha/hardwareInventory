@@ -67,6 +67,7 @@
         <form:input path="phoneNumber" type="text" />
         <form:errors path="phoneNumber" cssClass="errorForm" element="div"/>
     </div>
+    <c:if test="${user.id != 1}">
     <div>
         <label>active:</label>
         <form:checkbox path="activeUser" />
@@ -75,7 +76,7 @@
         <label>admin:</label>
         <form:checkbox path="superUser"/>
     </div>
-
+    </c:if>
     <div><input value="save" type="submit"></div>
 
 

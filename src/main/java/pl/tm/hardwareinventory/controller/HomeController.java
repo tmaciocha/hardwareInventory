@@ -50,9 +50,8 @@ public class HomeController {
 
         }
         modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
-        model.addAttribute("tasksNumber", taskService.number());
+        model.addAttribute("tasksNumber", jpaTaskService.numberActiveTask());
         model.addAttribute("users3MonthsEnd", userRepository.activeUserNumberWhereContractEndInThreeMonth());
-    //    model.addAttribute("usersEndedContract", userRepository.activeUsersNumberWhichContractIsFinished());
         model.addAttribute("usersNumber", userRepository.findAll().stream().count());
         model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
         model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());

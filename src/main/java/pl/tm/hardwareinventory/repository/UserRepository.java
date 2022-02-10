@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findFirstByUsername(String username);
 
-    @Query(value = "select count(*) from users where active_user is true and (end_of_contract <= now() + INTERVAL 3 MONTH OR end_of_contract <= now())", nativeQuery = true)
+    @Query(value = "select count(*) from users where active_user is true and (end_of_contract <= now() + INTERVAL 3 MONTH OR end_of_contract >= now())", nativeQuery = true)
     Integer activeUserNumberWhereContractEndInThreeMonth();
 
 /*    @Query(value = "select count(*) from users where end_of_contract <= now()  and active_user is true", nativeQuery = true)
