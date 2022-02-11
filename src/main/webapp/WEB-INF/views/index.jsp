@@ -24,34 +24,41 @@
 
     <div class="card mb-4">
         <div class="card-header">
-            <c:if test="${users3MonthsEnd > 0}">
-            <div style="color: #ff3e2d">Active users which contract ends in 3 months, or has ended: ${users3MonthsEnd}</div>
+            <c:if test="${users3MonthsEnd >= 0}">
+                <div style="color: #0a58ca">Active users which contract ends in 3 months: ${users3MonthsEnd}</div>
             </c:if>
+            <c:if test="${usersWithEndedContract > 0}">
+                <div style="color: #ff3e2d"><h3>Still active despite the completed contract: ${usersWithEndedContract}</h3></div>
+            </c:if>
+
 
             <div>Active tasks:
                 <c:if test="${tasksNumber > 0}"><h5 style="color: red"> ${tasksNumber} </h5></c:if>
-                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go on a walk!</h4> </c:if>
+                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go on a
+                    walk!</h4></c:if>
 
 
+            </div>
+            <sec:authorize access="isAnonymous()">
+                <div>users: ${usersNumber}</div>
+                <div>hardware: ${hardwareNumber}</div>
+                <div>software: ${softwareNumber}</div>
 
-
-                    </div>
-<sec:authorize access="isAnonymous()">
-            <div>users: ${usersNumber}</div>
-            <div>hardware: ${hardwareNumber}</div>
-            <div>software: ${softwareNumber}</div>
-
-</sec:authorize>
+            </sec:authorize>
             <sec:authorize access="isAuthenticated()">
             <hr>
 
 
-
             <i class="fas fa-table me-1"></i>
             All tasks</br>
-         <label>show done
-        <%--    <form:checkbox path="showFinished"/>--%>
-        </label></div>
+            <form action="/" method="Post">
+
+                <label for="done">show done</label><input type="checkbox" id="done" name="done" />
+                            <input type="submit" value="show" name="done" checked/>
+            </form>
+
+
+        </div>
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>

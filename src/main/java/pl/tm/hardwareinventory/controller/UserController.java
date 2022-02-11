@@ -108,7 +108,8 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "users/edit";
         }
-        userService.saveUser(user);
+        userRepository.save(user);
+        //userService.saveUser(user);
         return "redirect:/user/";
     }
 
