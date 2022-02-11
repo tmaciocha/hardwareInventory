@@ -12,12 +12,12 @@
 
 
 <html>
-<title>Hardware</title>
+<title>find</title>
 </html>
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Hardware list:</h1>
+    <h1 class="mt-4"> Dashboard find list:</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
@@ -29,19 +29,10 @@
 
         </div>
         <div class="card-body">
-            <%--<c:forEach items="${hardwareSearch}" var="search">--%>
-
-         <%--   <c:if test="${search.contains('@')}">
-            you are searching hardware for user: ${search} </br>founded:</br>
-            </c:if>
-                <c:if test="${!search.contains('@')}">
-                    you are searching hardware: ${search} </br>founded:</br>
-                </c:if>
-            <c:forEach items="${hardwareSearch}" var="searched">
-                <a href="/hardware/details/${searched.id}">${searched.name}</a></br>
+            you are searching software: ${search} </br>founded:</br>
+            <c:forEach items="${taskSearch}" var="searched">
+                <a href="/task/edit/${searched.id}">${searched.title}</a>: ${searched.hardware.name} ${searched.software.name} ${searched.user.username}${searched.description}</br>
             </c:forEach>
-            &lt;%&ndash;</c:forEach>&ndash;%&gt;
---%>
 
         </div>
     </div>

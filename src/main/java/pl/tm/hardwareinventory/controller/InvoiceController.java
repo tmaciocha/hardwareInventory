@@ -9,6 +9,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.tm.hardwareinventory.model.Invoice;
 import pl.tm.hardwareinventory.model.MyFile;
+import pl.tm.hardwareinventory.model.Software;
 import pl.tm.hardwareinventory.repository.CompanyRepository;
 import pl.tm.hardwareinventory.repository.InvoiceRepository;
 import pl.tm.hardwareinventory.repository.MyFileRepository;
@@ -135,6 +136,16 @@ public class InvoiceController {
         return new ModelAndView("redirect:/invoice/","filesuccess","File successfully saved!");
     }
 
+    @PostMapping("/search")
+    public String find(@RequestParam String search, Model model){
+        model.addAttribute("search", search);
+        List<Invoice> invoiceList = invoiceRepository.findAllByNumber(search);
+        if(invoiceList.size()>0){
+            model.addAttribute("invoiceSearch", invoiceList);
+            return "invoices/find";
+        }
+        return "redirect:/invoice/";
+    }
 
 
 
