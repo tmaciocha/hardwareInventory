@@ -10,6 +10,7 @@ import pl.tm.hardwareinventory.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
         }else {
             userRole = roleRepository.findByName("ROLE_USER");
         }
-        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        user.setRole(userRole);
         userRepository.save(user);
     }
 }

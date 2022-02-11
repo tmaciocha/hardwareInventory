@@ -46,7 +46,7 @@ public class HomeController {
             user.setEndOfContract(null);
             user.setActiveUser(true);
             user.setSuperUser(true);
-            user.setRoles(Collections.singleton(roleRepository.getById(2)));
+            user.setRole(roleRepository.getById(2));
             userService.saveUser(user);
             logger.info("!!!!!!Admin created: admin@gmail.com, pass!!!!!!");
 
