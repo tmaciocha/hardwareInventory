@@ -52,6 +52,7 @@ public class HomeController {
         }
         modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
         model.addAttribute("tasksNumber", jpaTaskService.numberActiveTask());
+        model.addAttribute("usersEnded", userRepository.activeUserNumberWhereContractEnded());
         model.addAttribute("users3MonthsEnd", userRepository.activeUserNumberWhereContractEndInThreeMonth());
         model.addAttribute("usersNumber", userRepository.findAll().stream().count());
         model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
@@ -79,5 +80,8 @@ public class HomeController {
         }
         return "redirect:/";
     }
+
+
+
 }
 

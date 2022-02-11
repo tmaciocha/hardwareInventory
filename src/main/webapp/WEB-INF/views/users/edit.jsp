@@ -52,11 +52,13 @@
         <form:input path="password" type="password"/>
         <form:errors path="password" cssClass="errorForm" element="div"/>
     </div>
+        <c:if test="${user.id != 1}">
      <div>
                 <label>End of the contract</label>
                 <form:input path="endOfContract" type="date" />
                 <form:errors path="endOfContract" cssClass="errorForm" element="div"/>
             </div>
+    </c:if>
     <div>
         <label>Domain username:</label>
         <form:input path="domainUserName" type="text" />
@@ -67,6 +69,9 @@
         <form:input path="phoneNumber" type="text" />
         <form:errors path="phoneNumber" cssClass="errorForm" element="div"/>
     </div>
+
+
+
     <c:if test="${user.id != 1}">
     <div>
         <label>active:</label>

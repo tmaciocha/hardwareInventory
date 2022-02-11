@@ -108,6 +108,10 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "users/edit";
         }
+        if(user.getId() == 1){
+            user.setSuperUser(true);
+            user.setActiveUser(true);
+        }
         userService.saveUser(user);
         return "redirect:/user/";
     }
