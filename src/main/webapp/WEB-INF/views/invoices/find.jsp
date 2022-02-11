@@ -12,12 +12,12 @@
 
 
 <html>
-<title>Hardware</title>
+<title>Invoice</title>
 </html>
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4"> Hardware list:</h1>
+    <h1 class="mt-4"> Invoice list:</h1>
     <ol class="breadcrumb mb-4">
     </ol>
 
@@ -29,19 +29,11 @@
 
         </div>
         <div class="card-body">
-            <%--<c:forEach items="${hardwareSearch}" var="search">--%>
+            you are searching software: ${search} </br>founded:</br>
+            <c:forEach items="${invoiceSearch}" var="searched">
+                <a href="/invoice/edit/${searched.id}">edit ${searched.numberCompanyDateDescription}</a>; View invoice: <a href="/invoices/${searched.filename}">view</a></br>
 
-         <%--   <c:if test="${search.contains('@')}">
-            you are searching hardware for user: ${search} </br>founded:</br>
-            </c:if>
-                <c:if test="${!search.contains('@')}">
-                    you are searching hardware: ${search} </br>founded:</br>
-                </c:if>
-            <c:forEach items="${hardwareSearch}" var="searched">
-                <a href="/hardware/details/${searched.id}">${searched.name}</a></br>
             </c:forEach>
-            &lt;%&ndash;</c:forEach>&ndash;%&gt;
---%>
 
         </div>
     </div>

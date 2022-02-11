@@ -125,7 +125,6 @@ public class HardwareController {
             model.addAttribute("hardwareSearch", hardwareList);
             return "hardware/find";
         }
-
         List<Hardware> hardwareList = hardwareRepository.findAllWhereIsSearch(search);
             if(hardwareList.size()>0){
             model.addAttribute("hardwareSearch", hardwareList);

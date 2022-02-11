@@ -36,7 +36,6 @@ public class SoftwareController {
     private final CompanyRepository companyRepository;
     private final UserRepository userRepository;
     private final InvoiceRepository invoiceRepository;
-    private final TaskService taskService;
 
     private static final Logger logger = LoggerFactory.getLogger(SoftwareController.class);
 
@@ -49,7 +48,6 @@ public class SoftwareController {
     @GetMapping("/add")
     private String add(Model model) {
         model.addAttribute("software", new Software());
-        //model.addAttribute("newTask", new Task());
         model.addAttribute("producers", producerRepository.findAllByOrderByNameAsc());
         model.addAttribute("softwareTypes", softwareTypeRepository.findAllByOrderByTypeAsc());
         model.addAttribute("companies", companyRepository.findAllByOrderByNameAsc());
@@ -151,6 +149,19 @@ public class SoftwareController {
             throw new RuntimeException();
         }
         return "software/details";
+    }
+
+
+
+    @PostMapping("/search")
+    public String findSoftware(@RequestParam String search, Model model){
+        model.addAttribute("search", search);
+        List<Software> softwareList = softwareRepository.findAllWhereIsSearch(search);
+        if(softwareList.size()>0){
+            model.addAttribute("softwareSearch", softwareList);
+            return "software/find";
+        }
+        return "redirect:/software/";
     }
 
 }

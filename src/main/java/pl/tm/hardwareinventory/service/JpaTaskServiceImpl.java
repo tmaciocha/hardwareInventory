@@ -6,8 +6,6 @@ import pl.tm.hardwareinventory.dto.TaskUserHardwareSoftwareDTO;
 import pl.tm.hardwareinventory.model.Task;
 import pl.tm.hardwareinventory.repository.TaskRepository;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,6 +56,12 @@ public class JpaTaskServiceImpl implements TaskService {
     public int numberActiveTask() {
         return taskRepository.countActiveTask();
     }
+
+    @Override
+    public List<Task> getTasksByTitle(String title) {
+        return taskRepository.findAllByTitle(title);
+    }
+
 
     public List<TaskUserHardwareSoftwareDTO> getAllTaskUserHardwareSoftware() {
         return taskRepository.findAll()
