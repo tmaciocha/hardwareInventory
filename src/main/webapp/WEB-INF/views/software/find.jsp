@@ -29,7 +29,7 @@
 
         </div>
         <div class="card-body">
-            you are searching software: ${search} </br>founded:</br>
+            you are searching software: ${search} </br>found:</br>
             <c:forEach items="${softwareSearch}" var="searched">
                 <a href="/software/details/${searched.id}">${searched.name}</a></br>
             </c:forEach>

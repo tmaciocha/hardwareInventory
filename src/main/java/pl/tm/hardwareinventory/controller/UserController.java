@@ -69,7 +69,7 @@ public class UserController {
         user.setEndOfContract(null);
         user.setActiveUser(true);
         user.setSuperUser(true);
-        user.setRoles(Collections.singleton(roleRepository.getById(2)));
+        user.setRole(roleRepository.getById(2));
         user.setPhoneNumber("2131232 123 13");
         userService.saveUser(user);
         return "admin";

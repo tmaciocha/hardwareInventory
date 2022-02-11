@@ -29,19 +29,21 @@
 
         </div>
         <div class="card-body">
-            <%--<c:forEach items="${hardwareSearch}" var="search">--%>
-
-         <%--   <c:if test="${search.contains('@')}">
-            you are searching hardware for user: ${search} </br>founded:</br>
-            </c:if>
-                <c:if test="${!search.contains('@')}">
-                    you are searching hardware: ${search} </br>founded:</br>
+            <c:forEach items="${hardwareSearch}" var="search">
+                You can search in NAME, SERIAL NUMBER or USER EMAIL.</br>
+                <c:if test="${userSearch.username.contains('@')}">
+                    you are searching hardware for user: ${userSearch} </br>found:</br>
+                    <a href="/hardware/details/${userSearch.id}">${userSearch.username}</a></br>
                 </c:if>
-            <c:forEach items="${hardwareSearch}" var="searched">
-                <a href="/hardware/details/${searched.id}">${searched.name}</a></br>
+                <c:if test="${!userSearch.username.contains('@')}">
+                    you are searching hardware: ${searchString} </br>found:</br>
+
+                </c:if>
+                <c:forEach items="${hardwareSearch}" var="searched">
+                    <a href="/hardware/details/${searched.id}">${searched.name}</a></br>
+                </c:forEach>
             </c:forEach>
-            &lt;%&ndash;</c:forEach>&ndash;%&gt;
---%>
+
 
         </div>
     </div>

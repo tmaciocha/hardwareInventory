@@ -118,11 +118,12 @@ public class HardwareController {
 
     @PostMapping("/search")
     public String findHardware(@RequestParam String search, Model model){
-        model.addAttribute("search", search);
+        model.addAttribute("searchString", search);
         if(search.contains("@")){
             User user = userRepository.findByUsername(search);
             List<Hardware> hardwareList = hardwareRepository.findAllByUserId(user.getId());
             model.addAttribute("hardwareSearch", hardwareList);
+            model.addAttribute("userSearch", userRepository.findByUsername(search));
             return "hardware/find";
         }
         List<Hardware> hardwareList = hardwareRepository.findAllWhereIsSearch(search);

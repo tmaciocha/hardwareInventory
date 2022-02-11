@@ -29,7 +29,7 @@
 
         </div>
         <div class="card-body">
-            you are searching software: ${search} </br>founded:</br>
+            you are searching software: ${search} </br>found:</br>
             <c:forEach items="${invoiceSearch}" var="searched">
                 <a href="/invoice/edit/${searched.id}">edit ${searched.numberCompanyDateDescription}</a>; View invoice: <a href="/invoices/${searched.filename}">view</a></br>
 

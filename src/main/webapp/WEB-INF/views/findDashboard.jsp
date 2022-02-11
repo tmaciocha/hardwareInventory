@@ -29,7 +29,7 @@
 
         </div>
         <div class="card-body">
-            you are searching software: ${search} </br>founded:</br>
+            you can find tasks by TITLE or DESCRIPTION. Your looking: "${search}" </br>found:</br>
             <c:forEach items="${taskSearch}" var="searched">
                 <a href="/task/edit/${searched.id}">${searched.title}</a>: ${searched.hardware.name} ${searched.software.name} ${searched.user.username}${searched.description}</br>
             </c:forEach>
