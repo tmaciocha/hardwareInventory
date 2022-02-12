@@ -25,6 +25,7 @@ public class UserController {
     private final UserRepository userRepository;
     private final UserService userService;
     private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -96,6 +97,7 @@ public class UserController {
     public String editForm(@PathVariable long id, Model model) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
+            userOptional.get().setPassword(null);
             model.addAttribute("user", userOptional.get());
         } else {
             throw new RuntimeException();
@@ -111,6 +113,7 @@ public class UserController {
         if(user.getId() == 1){
             user.setSuperUser(true);
             user.setActiveUser(true);
+
         }
         userService.saveUser(user);
         return "redirect:/user/";

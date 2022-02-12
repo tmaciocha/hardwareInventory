@@ -25,7 +25,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <c:if test="${users3MonthsEnd > 0}">
-            <div style="color: #0c63e4">Active users which contract ends in 3 months: ${users3MonthsEnd}</div>
+                <div style="color: #0c63e4">Active users which contract ends in 3 months: ${users3MonthsEnd}</div>
             </c:if>
 
             <c:if test="${usersEnded > 0}">
@@ -33,84 +33,84 @@
             </c:if>
 
 
-
             <div>Active tasks:
                 <c:if test="${tasksNumber > 0}"><h5 style="color: red"> ${tasksNumber} </h5></c:if>
-                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go on a walk!</h4> </c:if>
+                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go on a
+                    walk!</h4></c:if>
 
 
+            </div>
+            <sec:authorize access="isAnonymous()">
+                <div>users: ${usersNumber}</div>
+                <div>hardware: ${hardwareNumber}</div>
+                <div>software: ${softwareNumber}</div>
 
-
-                    </div>
-<sec:authorize access="isAnonymous()">
-            <div>users: ${usersNumber}</div>
-            <div>hardware: ${hardwareNumber}</div>
-            <div>software: ${softwareNumber}</div>
-
-</sec:authorize>
+            </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-            <hr>
 
 
+                <c:if test="${tasksDto.size() > 0}">
+                    <hr>
+                    <i class="fas fa-table me-1"></i>
+                    All tasks</br>
+                    <form action="/" method="Post">
 
-            <i class="fas fa-table me-1"></i>
-            All tasks</br>
-                <form action="/" method="Post">
+                         <label for="done">show done</label><input type="checkbox" id="done" name="done" />
+                         <input type="submit" value="show" name="done" checked/>
+                     </form>
 
-                    <label for="done">show done</label><input type="checkbox" id="done" name="done" />
-                    <input type="submit" value="show" name="done" checked/>
-                </form>
+                    <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                        <tr>
+                            <th>done</th>
+                            <th>priority</th>
+                            <th>Created/opened on</th>
+                            <th>Closed on</th>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>hardware</th>
+                            <th>software</th>
+                            <th>user</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>done</th>
+                            <th>priority</th>
+                            <th>Created/opened on</th>
+                            <th>Closed on</th>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>hardware</th>
+                            <th>software</th>
+                            <th>user</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
 
-        <div class="card-body">
-            <table id="datatablesSimple">
-                <thead>
-                <tr>
-                    <th>done</th>
-                    <th>priority</th>
-                    <th>Created/opened on</th>
-                    <th>Closed on</th>
-                    <th>title</th>
-                    <th>description</th>
-                    <th>hardware</th>
-                    <th>software</th>
-                    <th>user</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>done</th>
-                    <th>priority</th>
-                    <th>Created/opened on</th>
-                    <th>Closed on</th>
-                    <th>title</th>
-                    <th>description</th>
-                    <th>hardware</th>
-                    <th>software</th>
-                    <th>user</th>
-                </tr>
-                </tfoot>
-                <tbody>
+                        <c:forEach items="${tasksDto}" var="task">
+                            <tr>
+                                <td><c:if test="${task.status == true }">&#10004;</c:if></td>
+                                <td>${task.priority}</td>
+                                <td>${task.logDate}</td>
+                                <td>${task.closeDate}</td>
+                                <td>${task.title}</td>
+                                <td>${task.description}</td>
+                                <td>${task.serialNumber} ${task.hardwareName}  </td>
+                                <td>${task.softwareName} ${task.softwareProducerName}</td>
+                                <td>${task.username}</td>
+                                <td><a href="task/edit/${task.taskId}">Edit</a></td>
 
-                <c:forEach items="${tasksDto}" var="task">
-                    <tr>
-                        <td><c:if test="${task.status == true }">&#10004;</c:if></td>
-                        <td>${task.priority}</td>
-                        <td>${task.logDate}</td>
-                        <td>${task.closeDate}</td>
-                        <td>${task.title}</td>
-                        <td>${task.description}</td>
-                        <td>${task.serialNumber} ${task.hardwareName}  </td>
-                        <td>${task.softwareName} ${task.softwareProducerName}</td>
-                        <td>${task.username}</td>
-                        <td><a href="task/edit/${task.taskId}">Edit</a></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
 
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                </div>
+                </c:if>
+            </sec:authorize>
         </div>
-        </sec:authorize>
     </div>
-</div>
 
 <%@ include file="/WEB-INF/views/fragments/footer.jsp" %>

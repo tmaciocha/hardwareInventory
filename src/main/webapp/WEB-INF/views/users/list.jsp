@@ -72,7 +72,7 @@
                         <td>${user.endOfContract}</td>
 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        <td><a href="edit/${user.id}">Edit</a></td>
+                        <td><a href="edit/${user.id}">Edit Password</a></td>
                         </sec:authorize>
 
                         <td><a href="/task/add/user/${user.id}">Add task</a></td>

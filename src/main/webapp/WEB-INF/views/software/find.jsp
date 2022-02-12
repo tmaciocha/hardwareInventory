@@ -29,6 +29,7 @@
 
         </div>
         <div class="card-body">
+            You can search in NAME, SERIAL KEY, VERSION.</br>
             you are searching software: ${search} </br>founded:</br>
             <c:forEach items="${softwareSearch}" var="searched">
                 <a href="/software/details/${searched.id}">${searched.name}</a></br>
