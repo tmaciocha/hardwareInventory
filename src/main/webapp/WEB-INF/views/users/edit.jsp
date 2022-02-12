@@ -38,18 +38,18 @@
 
     <div>
         <label>First Name</label>
-        <form:input path="firstName" type="text"/>
+        <form:input path="firstName" type="text" readonly="true"/>
         <form:errors path="firstName" cssClass="errorForm" element="div"/>
     </div>
 
     <div>
         <label>Last Name</label>
-        <form:input path="lastName" type="text"/>
+        <form:input path="lastName" type="text" readonly="true"/>
         <form:errors path="lastName" cssClass="errorForm" element="div"/>
     </div>
     <div>
         <label>Password</label>
-        <form:input path="password" type="password"/>
+        <form:input path="password" type="password" />
         <form:errors path="password" cssClass="errorForm" element="div"/>
     </div>
         <c:if test="${user.id != 1}">

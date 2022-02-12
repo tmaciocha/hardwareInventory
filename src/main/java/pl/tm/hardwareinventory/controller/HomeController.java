@@ -18,6 +18,7 @@ import pl.tm.hardwareinventory.service.UserService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,7 +51,7 @@ public class HomeController {
             logger.info("!!!!!!Admin created: admin@gmail.com, pass!!!!!!");
 
         }
-        modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
+        modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftwareStatusFalse());
         model.addAttribute("tasksNumber", jpaTaskService.numberActiveTask());
         model.addAttribute("usersEnded", userRepository.activeUserNumberWhereContractEnded());
         model.addAttribute("users3MonthsEnd", userRepository.activeUserNumberWhereContractEndInThreeMonth());
@@ -61,6 +62,38 @@ public class HomeController {
         model.addAttribute("hardware", hardwareRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
         return "index";
+    }
+
+
+    @PostMapping("/")
+    public String filterDone(@RequestParam Boolean done, Model model, ModelMap modelMap) {
+        Optional<Boolean> doneOptional = Optional.ofNullable(done);
+        if (doneOptional.isPresent() && done) {
+            modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftware());
+            model.addAttribute("tasksNumber", jpaTaskService.numberActiveTask());
+            model.addAttribute("usersEnded", userRepository.activeUserNumberWhereContractEnded());
+            model.addAttribute("users3MonthsEnd", userRepository.activeUserNumberWhereContractEndInThreeMonth());
+            model.addAttribute("usersNumber", userRepository.findAll().stream().count());
+            model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
+            model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());
+            model.addAttribute("softwareList", softwareRepository.findAll());
+            model.addAttribute("hardware", hardwareRepository.findAll());
+            model.addAttribute("users", userRepository.findAll());
+            return "index";
+        }
+
+        modelMap.addAttribute("tasksDto", jpaTaskService.getAllTaskUserHardwareSoftwareStatusFalse());
+        model.addAttribute("tasksNumber", jpaTaskService.numberActiveTask());
+        model.addAttribute("users3MonthsEnd", userRepository.activeUserNumberWhereContractEndInThreeMonth());
+        model.addAttribute("usersEnded", userRepository.activeUserNumberWhereContractEnded());
+        model.addAttribute("usersNumber", userRepository.findAll().stream().count());
+        model.addAttribute("hardwareNumber", hardwareRepository.findAll().stream().count());
+        model.addAttribute("softwareNumber", softwareRepository.findAll().stream().count());
+        model.addAttribute("softwareList", softwareRepository.findAll());
+        model.addAttribute("hardware", hardwareRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
+        // model.addAttribute("done",false);
+        return "redirect:/";
     }
 
 
