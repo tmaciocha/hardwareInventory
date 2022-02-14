@@ -60,18 +60,18 @@ public class TaskController {
             return "tasks/edit";
         }
         Optional<Task> taskOptional = taskRepository.findById(id);
-        if(taskOptional.isPresent()){
+        if (taskOptional.isPresent()) {
 
             Task taskToUpdate = taskOptional.get();
             taskToUpdate.setId(taskOptional.get().getId());
             taskToUpdate.setLogDate(taskOptional.get().getLogDate());
-            if(taskToUpdate.getStatus() == false) {
+            if (taskToUpdate.getStatus() == false) {
                 if (taskDto.getStatus() == true) {
                     taskToUpdate.setCloseDate(LocalDate.now());
                 }
             }
-            if(taskToUpdate.getStatus()){
-                if(taskDto.getStatus() == false){
+            if (taskToUpdate.getStatus()) {
+                if (taskDto.getStatus() == false) {
                     taskToUpdate.setCloseDate(null);
                     taskToUpdate.setLogDate(LocalDate.now());
                 }
@@ -84,7 +84,6 @@ public class TaskController {
         }
         return "redirect:/";
     }
-
 
 
     @GetMapping("/add/software/{softwareId}")

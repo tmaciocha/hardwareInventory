@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SettingsController {
 
     @GetMapping("/settings")
-    public String settings(){
-        return"/admin/settings/settings";
+    public String settings() {
+        return "/admin/settings/settings";
     }
 }

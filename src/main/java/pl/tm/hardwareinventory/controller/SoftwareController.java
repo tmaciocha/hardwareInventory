@@ -152,12 +152,11 @@ public class SoftwareController {
     }
 
 
-
     @PostMapping("/search")
-    public String findSoftware(@RequestParam String search, Model model){
+    public String findSoftware(@RequestParam String search, Model model) {
         model.addAttribute("search", search);
         List<Software> softwareList = softwareRepository.findAllWhereIsSearch(search);
-        if(softwareList.size()>0){
+        if (softwareList.size() > 0) {
             model.addAttribute("softwareSearch", softwareList);
             return "software/find";
         }

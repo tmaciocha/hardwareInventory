@@ -10,7 +10,7 @@ import pl.tm.hardwareinventory.model.User;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-public interface TaskRepository extends JpaRepository<Task,Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findAllByOrderByPriorityDesc();
 

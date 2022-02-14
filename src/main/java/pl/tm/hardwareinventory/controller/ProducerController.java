@@ -24,14 +24,14 @@ public class ProducerController {
     }
 
     @GetMapping("/add")
-    public String add(Model model){
+    public String add(Model model) {
         model.addAttribute("producer", new Producer());
         return "/admin/settings/producers/add";
     }
 
     @PostMapping("/add")
-    public String save(@Valid Producer producer, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String save(@Valid Producer producer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/admin/settings/producers/add";
         }
         producerRepository.save(producer);
@@ -39,19 +39,19 @@ public class ProducerController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model){
+    public String edit(@PathVariable long id, Model model) {
         Optional<Producer> producerOptional = producerRepository.findById(id);
-        if(producerOptional.isPresent()){
+        if (producerOptional.isPresent()) {
             model.addAttribute("producer", producerOptional.get());
-        }else{
+        } else {
             throw new RuntimeException();
         }
         return "admin/settings/producers/edit";
     }
 
     @PostMapping("/edit")
-    public String update(@Valid Producer producer, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String update(@Valid Producer producer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "admin/settings/producers/edit";
         }
         producerRepository.save(producer);
@@ -59,16 +59,16 @@ public class ProducerController {
     }
 
     @GetMapping("/remove/{id}")
-    public String removeForm(@PathVariable long id, Model model){
+    public String removeForm(@PathVariable long id, Model model) {
         model.addAttribute("producerId", id);
         return "admin/settings/producers/delete";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id, Model model, @RequestParam String confirm){
-        if(confirm.equals("Yes")){
+    public String delete(@PathVariable long id, Model model, @RequestParam String confirm) {
+        if (confirm.equals("Yes")) {
             Optional<Producer> producer = producerRepository.findById(id);
-            if(producer.isPresent()){
+            if (producer.isPresent()) {
                 producerRepository.deleteById(id);
                 model.addAttribute("producerId", null);
             }

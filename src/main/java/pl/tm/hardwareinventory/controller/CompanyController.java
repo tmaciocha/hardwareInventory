@@ -19,22 +19,22 @@ public class CompanyController {
 
     //list
     @RequestMapping("/")
-    public String list(Model model){
+    public String list(Model model) {
         model.addAttribute("companies", companyRepository.findAllByOrderByNameAsc());
         return "/companies/list";
     }
 
     //add
-    @GetMapping ("/add")
-    public String add(Model model){
+    @GetMapping("/add")
+    public String add(Model model) {
         model.addAttribute("company", new Company());
         return "/companies/add";
     }
 
     //save new
     @PostMapping("/add")
-    public String save(@Valid Company company, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String save(@Valid Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/companies/add";
         }
         companyRepository.save(company);
@@ -43,19 +43,19 @@ public class CompanyController {
 
     //edit
     @GetMapping("/edit/{id}")
-    public String edit (@PathVariable long id, Model model){
+    public String edit(@PathVariable long id, Model model) {
         Optional<Company> companyOptional = Optional.of(companyRepository.getById(id));
-        if(companyOptional.isPresent()){
+        if (companyOptional.isPresent()) {
             model.addAttribute("company", companyOptional.get());
-        }else {
-            throw new RuntimeException() ;
+        } else {
+            throw new RuntimeException();
         }
         return "companies/edit";
     }
 
     @PostMapping("/edit")
-    public String update(@Valid Company company, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String update(@Valid Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "companies/edit";
         }
         companyRepository.save(company);
