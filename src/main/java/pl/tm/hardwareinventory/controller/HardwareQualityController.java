@@ -15,29 +15,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/hardwareQuality")
 public class HardwareQualityController {
-        private final HardwareQualityRepository hardwareQRepo;
+    private final HardwareQualityRepository hardwareQRepo;
 
-        @GetMapping("/")
-        private String list(Model model){
-            model.addAttribute("qualities", hardwareQRepo.findAllByOrderByNameAsc());
-            return "/admin/settings/hardwareQuality/list";
-        }
+    @GetMapping("/")
+    private String list(Model model) {
+        model.addAttribute("qualities", hardwareQRepo.findAllByOrderByNameAsc());
+        return "/admin/settings/hardwareQuality/list";
+    }
 
-        @GetMapping("/add")
-         private String add( Model model){
+    @GetMapping("/add")
+    private String add(Model model) {
         model.addAttribute("qualityType", new HardwareQuality());
         return "/admin/settings/hardwareQuality/add";
-        }
+    }
 
     @PostMapping("/add")
-    private String save(@Valid HardwareQuality hardwareQuality, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    private String save(@Valid HardwareQuality hardwareQuality, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/admin/settings/hardwareQuality/add";
         }
         hardwareQRepo.save(hardwareQuality);
         return "redirect:/hardwareQuality/";
     }
-
 
 
     @GetMapping("/remove/{id}")
@@ -57,7 +56,6 @@ public class HardwareQualityController {
         }
         return "redirect:/hardwareQuality/";
     }
-
 
 
     @GetMapping("/edit/{id}")

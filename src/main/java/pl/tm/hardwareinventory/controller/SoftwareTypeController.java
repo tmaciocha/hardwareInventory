@@ -16,29 +16,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/softwaretype")
 public class SoftwareTypeController {
-        private final SoftwareTypeRepository softwareTypeRepository;
+    private final SoftwareTypeRepository softwareTypeRepository;
 
-        @GetMapping("/")
-        private String list(Model model){
-            model.addAttribute("softwareTypes", softwareTypeRepository.findAllByOrderByTypeAsc());
-            return "/admin/settings/softwareType/list";
-        }
-
-        @GetMapping("/add")
-    private String add( Model model){
-        model.addAttribute("softwaretype", new SoftwareType());
-        return "/admin/settings/softwareType/add";
-        }
-
-    @PostMapping("/add")
-    private String save(@Valid SoftwareType softwareType, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            return "admin/settings/softwareType/add";
-        }
-            softwareTypeRepository.save(softwareType);
-        return "redirect:/softwaretype/";
+    @GetMapping("/")
+    private String list(Model model) {
+        model.addAttribute("softwareTypes", softwareTypeRepository.findAllByOrderByTypeAsc());
+        return "/admin/settings/softwareType/list";
     }
 
+    @GetMapping("/add")
+    private String add(Model model) {
+        model.addAttribute("softwaretype", new SoftwareType());
+        return "/admin/settings/softwareType/add";
+    }
+
+    @PostMapping("/add")
+    private String save(@Valid SoftwareType softwareType, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "admin/settings/softwareType/add";
+        }
+        softwareTypeRepository.save(softwareType);
+        return "redirect:/softwaretype/";
+    }
 
 
     @GetMapping("/remove/{id}")
@@ -58,7 +57,6 @@ public class SoftwareTypeController {
         }
         return "redirect:/softwaretype/";
     }
-
 
 
     @GetMapping("/edit/{id}")

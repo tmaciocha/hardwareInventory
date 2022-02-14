@@ -60,7 +60,6 @@ public class User {
     LocalDate endOfContract;
 
 
-
     @ManyToMany
     @JoinTable(
             name = "users_software",

@@ -19,20 +19,20 @@ public class HardwareTypeController {
     private final HardwareTypeRepository hardwareTRepo;
 
     @GetMapping("/")
-    private String list(Model model){
+    private String list(Model model) {
         model.addAttribute("hardwareTypes", hardwareTRepo.findAllByOrderByTypeAsc());
         return "/admin/settings/hardwareType/list";
     }
 
     @GetMapping("/add")
-    private String add( Model model){
+    private String add(Model model) {
         model.addAttribute("hardwareType", new HardwareType());
         return "/admin/settings/hardwareType/add";
     }
 
     @PostMapping("/add")
-    private String save(@Valid HardwareType hardwareType, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    private String save(@Valid HardwareType hardwareType, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/admin/settings/hardwareType/add";
         }
         hardwareTRepo.save(hardwareType);
@@ -57,7 +57,6 @@ public class HardwareTypeController {
         }
         return "redirect:/hardwareType/";
     }
-
 
 
     @GetMapping("/edit/{id}")

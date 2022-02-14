@@ -33,13 +33,13 @@ public class HardwareController {
     private static final Logger logger = LoggerFactory.getLogger(HardwareController.class);
 
     @GetMapping("/")
-    private String list(Model model){
+    private String list(Model model) {
         model.addAttribute("hardwareList", hardwareRepository.findAll());
         return "/hardware/list";
     }
 
     @GetMapping("/add")
-    private String add( Model model){
+    private String add(Model model) {
         model.addAttribute("hardware", new Hardware());
         model.addAttribute("producers", producerRepository.findAllByOrderByNameAsc());
         model.addAttribute("hardwareTypes", hardwareTypeRepository.findAllByOrderByTypeAsc());
@@ -52,8 +52,8 @@ public class HardwareController {
     }
 
     @PostMapping("/add")
-    private String save(@Valid Hardware hardware, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    private String save(@Valid Hardware hardware, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "/hardware/add";
         }
         hardware.setLastChangeDate(LocalDate.now());
@@ -68,10 +68,8 @@ public class HardwareController {
         });
 
 
-
         return "redirect:/hardware/";
     }
-
 
 
     @GetMapping("/edit/{id}")
@@ -115,11 +113,10 @@ public class HardwareController {
     }
 
 
-
     @PostMapping("/search")
-    public String findHardware(@RequestParam String search, Model model){
+    public String findHardware(@RequestParam String search, Model model) {
         model.addAttribute("searchString", search);
-        if(search.contains("@")){
+        if (search.contains("@")) {
             User user = userRepository.findByUsername(search);
             List<Hardware> hardwareList = hardwareRepository.findAllByUserId(user.getId());
             model.addAttribute("hardwareSearch", hardwareList);
@@ -127,7 +124,7 @@ public class HardwareController {
             return "hardware/find";
         }
         List<Hardware> hardwareList = hardwareRepository.findAllWhereIsSearch(search);
-        if(hardwareList.size()>0){
+        if (hardwareList.size() > 0) {
             model.addAttribute("hardwareSearch", hardwareList);
             return "hardware/find";
         }

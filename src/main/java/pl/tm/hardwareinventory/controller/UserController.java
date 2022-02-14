@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping("/remove/{id}")
     public String getRemoveForm(@PathVariable long id, Model model) {
         model.addAttribute("userId", id);
-        if(id == 1){
+        if (id == 1) {
             return "users/deleteAdmin";
         }
         return "users/delete";
@@ -110,7 +110,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "users/edit";
         }
-        if(user.getId() == 1){
+        if (user.getId() == 1) {
             user.setSuperUser(true);
             user.setActiveUser(true);
 
