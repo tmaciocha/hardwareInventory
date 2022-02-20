@@ -14,7 +14,6 @@ import pl.tm.hardwareinventory.repository.UserRepository;
 import pl.tm.hardwareinventory.service.UserService;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 import java.util.Collections;
 import java.util.Optional;
 
