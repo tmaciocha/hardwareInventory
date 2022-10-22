@@ -35,7 +35,7 @@
 
             <div>Active tasks:
                 <c:if test="${tasksNumber > 0}"><h5 style="color: red"> ${tasksNumber} </h5></c:if>
-                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go on a
+                <c:if test="${tasksNumber == 0}"><h4 style="color:green"> Great, You don't have any task. Go for a
                     walk!</h4></c:if>
 
 
